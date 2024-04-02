@@ -72,6 +72,8 @@ A continuacion presentamos un ejemplo:
 
 A continuación detallaremos el glosario necesario para la completa comprensión del repositorio y sus archivos.
 
+<h4>Prefijos</h4>
+
 - ISW = "Ingeniería y Calidad de Software"
 - BIB = "Bibliografía"
 - TEM = "Template"
@@ -79,6 +81,12 @@ A continuación detallaremos el glosario necesario para la completa comprensión
 - PDM = "Planificación de la materia"
 - TPS = "Trabajos prácticos"
 - DIR = "Direcotorio"
+- DOC = "Documento"
+
+Los prefijos DOC y DIR son prefijos genericos que representan un tipo generico de item, documento y directorio respectivamente, a diferencia del resto de prefijos (BIB,TEM,PPT,PDM,TPS) que reflejan la ubicacion del archivo dentro de la estructura del respositorio
+
+<h4>Tipos de cambios de commit</h4>
+
 - feat: Para cambios que introducen nuevas características.
 - fix: Para cambios de corrección de errores.
 - docs: Para cambios en documentación.
@@ -87,9 +95,11 @@ A continuación detallaremos el glosario necesario para la completa comprensión
 - test: Para agregado de pruebas faltantes o corrección de pruebas existentes.
 - chore: Para tareas de mantenimiento, como actualizar dependencias.
 
- La fecha estará en formato "dd/mm/aaaa". Por ejemplo, el día 1 de abril de 2024 sería "01/04/2024".
+<h4>Otros</h4>
 
- Cada vez que nos referimos al "proyecto", estamos haciendo referencia al trabajo práctico programable de la materia.
+La fecha estará en formato "dd/mm/aaaa". Por ejemplo, el día 1 de abril de 2024 sería "01/04/2024".
+
+Cada vez que nos referimos al "proyecto", estamos haciendo referencia al trabajo práctico programable de la materia.
 
 <h3>Versionado</h3>
 
