@@ -8,7 +8,7 @@ Integrantes:
 - Oliva Paez, Javier Nicolas - 90664.
 - Gutierrez Cuetti, Ulises Matheo - 89874.
 - Gimenez Scarponi, Federico - 89340
-- 
+- Vigliocco, Mariano - 89434.
 -
 
 Estructura del repositorio
