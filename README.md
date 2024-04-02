@@ -41,10 +41,11 @@ Para establecer la primera linea base, consideraremos que se hayan subido correc
 Para el resto de las lineas base el criterio será: 
 
 Cada vez que exista un nuevo item de configuración que haga referencia a un trabajo práctico completo y terminado del cuatrimestre, se marcará una linea base.
+
 Al momento de realizar el proyecto de programación, el criterio será marcar una línea base por cada cambio que genere un software estable y usable. Consideramos "estable y usable" al software cuando funciona de manera consistente y predecible sin ningún error significativo, considerando que cada programador haya realizado y verificado que funcionen correctamente las tareas que se le han asignado en la organización del proyecto.
 Antes de marcar una línea base, cada programador deberá realizar pruebas exhaustivas para garantizar el correcto funcionamiento de las funcionalidades implementadas, asegurándose de que no haya errores críticos ni problemas que afecten la experiencia del usuario, y verificando que todas las tareas asignadas estén completadas con éxito e integradas coherentemente en el software. Además, se realizará una revisión por pares (code review) para garantizar la calidad y consistencia del código antes de la aprobación de la línea base por parte de todo el equipo, lo que indica que el software ha pasado por un riguroso proceso de verificación y está listo para su implementación. 
 
-Para cada línea base su nombre será "LíneaBase_númeroDeLínea" (por ejemplo, "LíneaBase_1" para la primera). En los comentarios de cada línea base explicaremos qué contiene y cuales son los nuevos cambios asociados con respecto a la línea base anterior. Además, incluiremos la fecha en la que se establece la misma. La fecha estará en formato "dd/mm/aaaa". Por ejemplo, el día 1 de abril de 2024 sería "01/04/2024".
+Para cada línea base su nombre será "LíneaBase_númeroDeLínea" (por ejemplo, "LíneaBase_1" para la primera). En los comentarios de cada línea base explicaremos qué contiene y cuales son los nuevos cambios asociados con respecto a la línea base anterior. Además, incluiremos la fecha en la que se establece la misma. 
 
 
 <h3>Estructura De Commits</h3>
@@ -86,7 +87,9 @@ A continuación detallaremos el glosario necesario para la completa comprensión
 - test: Para agregado de pruebas faltantes o corrección de pruebas existentes.
 - chore: Para tareas de mantenimiento, como actualizar dependencias.
 
-Cada vez que nos referimos al "proyecto", estamos haciendo referencia al trabajo práctico programable de la materia.
+ La fecha estará en formato "dd/mm/aaaa". Por ejemplo, el día 1 de abril de 2024 sería "01/04/2024".
+
+ Cada vez que nos referimos al "proyecto", estamos haciendo referencia al trabajo práctico programable de la materia.
 
 <h3>Versionado</h3>
 
