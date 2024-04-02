@@ -7,7 +7,7 @@ Integrantes:
 - Lambertucci, Juan Pablo - 90606.
 - Oliva Paez, Javier Nicolas - 90664.
 - Gutierrez Cuetti, Ulises Matheo - 89874.
-- 
+- Gimenez Scarponi, Federico - 89340
 - 
 -
 
