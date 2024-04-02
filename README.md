@@ -14,8 +14,9 @@
 
 <h3>Estructura del repositorio</h3>
 
-Se estableció un archivo .txt en la raíz del repositorio con su estructura inicial. 
+Se estableció un archivo .txt en la raíz del repositorio con su estructura inicial, el nombre del archivo es:
 
+        ISW_DOC_Estructura_Repositorio_v1.0.0
 
 <h3>Reglas de nombrado</h3>
 

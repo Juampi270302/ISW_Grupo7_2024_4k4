@@ -5,6 +5,11 @@ Repositorio
 	- ISW_DIR_Unidad3_v1.0.0
 	- ISW_DIR_Unidad4_v1.0.0
 - ISW_DIR_Bibliografia_v1.0.0
+	- ISW_DIR_AGILE_v1.0.0
+	- ISW_DIR_IngenieriaDeSoftware_v1.0.0
+	- ISW_DIR_LeanYKanban_v1.0.0
+	- ISW_DIR_SCM_v1.0.0
+	- ISW_DIR_TestingDeSoftware_v1.0.0
 - ISW_DIR_PlanificacionDeLaMateria_v1.0.0
 - ISW_DIR_Proyecto_v1.0.0
 	- ISW_DIR_Dependencias_v1.0.0
