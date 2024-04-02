@@ -94,6 +94,7 @@ Los prefijos DOC y DIR son prefijos genericos que representan un tipo generico d
 - refactor: Para cambios en el código que no corrigen errores ni agregan características.
 - test: Para agregado de pruebas faltantes o corrección de pruebas existentes.
 - chore: Para tareas de mantenimiento, como actualizar dependencias.
+- delete: Para eliminacion de documentacion
 
 <h4>Otros</h4>
 
