@@ -1,28 +1,23 @@
 Repositorio
-- Material clase
-	- Teorico
-		- Unidad 1
-		- Unidad 2
-		- Unidad 3
-		- Unidad 4
-- Bibliografia
-- Planificacion de la Materia
-- Proyecto
-	- Dependencias
-	- Base de datos
-	- Backend
-	- FrontEnd
-	- Documentacion
-		- Manual de usuario
-		- Requerimientos
-		- Protipos
-		- Vistas
-	- Pruebas
-		- Informes
-		- Casos de prueba
-		- Scripts de automatizacion
-	- Propuesta de cambios
-- Trabajos Practicos
-	- Practicos no evaluables
-	- Practicos evaluables
-	- Templates Practicos y parciales	
+- ISW_DIR_MaterialClase_v1.0.0
+	- ISW_DIR_Unidad1_v1.0.0
+	- ISW_DIR_Unidad2_v1.0.0
+	- ISW_DIR_Unidad3_v1.0.0
+	- ISW_DIR_Unidad4_v1.0.0
+- ISW_DIR_Bibliografia_v1.0.0
+- ISW_DIR_PlanificacionDeLaMateria_v1.0.0
+- ISW_DIR_Proyecto_v1.0.0
+	- ISW_DIR_Dependencias_v1.0.0
+	- ISW_DIR_BaseDeDatos_v1.0.0
+	- ISW_DIR_Backend_v1.0.0
+	- ISW_DIR_Frontend_v1.0.0
+	- ISW_DIR_Documentacion_v1.0.0
+	- ISW_DIR_Pruebas_v1.0.0
+		- ISW_DIR_Informes_v1.0.0
+		- ISW_DIR_CasosDePrueba_v1.0.0
+		- ISW_DIR_ScriptsDeAutomatizacion_v1.0.0
+	- ISW_DIR_PropuestaDeCambios_v1.0.0
+- ISW_DIR_TrabajosPracticos_v1.0.0
+	- ISW_DIR_PracticosEvaluables_v1.0.0
+	- ISW_DIR_PracticosNoEvaluables_v1.0.0
+	- ISW_DIR_TemplatesPracticosYParciales_v1.0.0
