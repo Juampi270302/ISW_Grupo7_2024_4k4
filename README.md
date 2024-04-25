@@ -38,7 +38,7 @@ Los Items con prefijo DIR, es decir directorios, no llevan extension de archivo
 <h3>Criterio de Linea Base</h3>
 
 Para establecer el criterio de linea base, tenemos en cuenta principalmente la entrega de los trabajos prácticos evaluables del cuatrimestre. 
-Estableceremos una nueva linea base con cada evento de agregación de un trabajo práctico evaluable al repositorio.
+Estableceremos una nueva linea base con cada evento de agregación de un trabajo práctico evaluable finalizado o entregado al repositorio.
 
 
 <h3>Glosario</h3>
