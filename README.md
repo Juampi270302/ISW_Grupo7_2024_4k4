@@ -39,7 +39,7 @@ Repositorio
 	- Guías
 	- PracticosEvaluablesResueltos
 	- PracticosNoEvaluablesResueltos
-   	-PracticosConceptualesResueltos
+   	- PracticosConceptualesResueltos
 - TemplatesPracticosYParciales
 - MaterialApoyo
 
