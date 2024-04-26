@@ -29,21 +29,19 @@ Repositorio
 - ClasesGrabadas
 - PlanificacionDeLaMateria
 - Proyecto
-	- Dependencias
-	- BaseDeDatos
-	- Backend
 	- Frontend
 	- Documentacion
 	- Pruebas
 		- Informes
 		- CasosDePrueba
-		- ScriptsDeAutomatizacion
 	- PropuestaDeCambios
 - TrabajosPracticos
 	- Guías
 	- PracticosEvaluablesResueltos
 	- PracticosNoEvaluablesResueltos
+   	-PracticosConceptualesResueltos
 - TemplatesPracticosYParciales
+- MaterialApoyo
 
 <h3>Reglas de nombrado</h3>
 
