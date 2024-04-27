@@ -15,7 +15,12 @@ export const TransportistaCard = (props: TransportistaCardProps) =>{
 
     const handleIngresarPress = () =>{
         console.log("Se ha apretado el boton")
-        navigation.navigate('Pago', { formasPago: forma_pago });
+        navigation.navigate('Pago', {
+            formasPago: forma_pago,
+            importe: importe,
+            fecha_retiro: fecha_retiro,
+            fecha_traslado: fecha_traslado
+        });
     }
 
     return (

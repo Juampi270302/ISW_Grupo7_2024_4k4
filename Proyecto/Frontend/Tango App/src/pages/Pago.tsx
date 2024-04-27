@@ -6,10 +6,16 @@ import { ButtonGood } from '@/components/ButtonGood';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import  { useState, useEffect } from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
+import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
+import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
+
 
 export const Pago = () => {
   const route = useRoute();
   const formasPago = route.params?.formasPago;
+  const fechaPagoRetiro = route.params?.fecha_retiro;
+  const fechaPagoEntrega = route.params?.fecha_traslado;
+  const importe = route.params?.importe
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
 
 
@@ -17,14 +23,30 @@ export const Pago = () => {
     console.log('Se confirmo la cotizacion')
   }
 
+  const renderFormaPagoCard = (selectedOption) => {
+
+    switch (selectedOption) {
+      case 'Tarjeta':
+        return <TarjetaCard />;
+      case 'Contado al retirar':
+        return <ContadoAlRetirarCard monto={importe} fechaPago={fechaPagoRetiro}/>;
+      case 'Contado contra entrega':
+        return <ContadoContraEntregaCard monto={importe} fechaPago={fechaPagoEntrega}/>;
+      default:
+        return null;
+    }
+  };
+
   const handleFormaPagoChange = (selectedOption) => {
-    setSelectedFormaPagoLabel(selectedOption.label); // Almacena la etiqueta de la opción seleccionada
+    setSelectedFormaPagoLabel(selectedOption.forma_pago);
+    console.log(selectedOption.forma_pago)
   };
 
   return (
     <SafeAreaView style={styles.MainContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
+
       <TarjetaCard />
       <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
        padding: 10,

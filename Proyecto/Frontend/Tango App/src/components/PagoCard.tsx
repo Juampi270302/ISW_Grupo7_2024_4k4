@@ -1,4 +1,4 @@
-import React, { View, Text, StyleSheet} from 'react-native'
+import React, { View, Text, StyleSheet } from 'react-native'
 import { Dropdown } from './Dropdown'
 import { FormaPago } from '@/utils/Types'
 
@@ -7,8 +7,8 @@ interface PagoCardProps {
     onSelectFormaPago: (formaPago: FormaPago) => void; // Función de devolución de llamada para manejar la selección de forma de pago
 }
 
-export const PagoCard = ( {formasPago, onSelectFormaPago}: PagoCardProps) => {
-    const placeholder = { label: 'Selecciona una opción...', value: null };
+export const PagoCard = ({ formasPago, onSelectFormaPago }: PagoCardProps) => {
+    const placeholder = { label: 'Seleccione una forma de pago...', value: null };
 
     const options = formasPago.map(formaPago => ({
         label: formaPago.forma_pago,
@@ -16,8 +16,9 @@ export const PagoCard = ( {formasPago, onSelectFormaPago}: PagoCardProps) => {
     }));
 
     const handleSelectFormaPago = (selectedOption) => {
-        onSelectFormaPago(selectedOption);
+        onSelectFormaPago(selectedOption.value);
     };
+
 
     return(
         <View style={styles.cardContainer}>
@@ -25,6 +26,7 @@ export const PagoCard = ( {formasPago, onSelectFormaPago}: PagoCardProps) => {
         </View>
     )
 };
+
 
 const styles = StyleSheet.create({
     cardContainer: {

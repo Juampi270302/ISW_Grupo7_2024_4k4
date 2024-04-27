@@ -1,39 +1,47 @@
 import React, { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { FormaPago } from '@/utils/Types';
 
-interface PlaceHolderProps{
-    label: string
-    value: null
+interface PlaceHolderProps {
+    label: string;
+    value: null;
 }
 
-interface OptionsProps{
-    label: string
-    value: FormaPago
+interface OptionsProps {
+    label: string;
+    value: FormaPago;
 }
 
 interface DropdownProps {
     placeholder: PlaceHolderProps;
     options: OptionsProps[];
+    onSelectOption: (selectedOption: OptionsProps) => void;
 }
 
+export const Dropdown = ({ placeholder, options, onSelectOption }: DropdownProps) => {
+    const [selectedValue, setSelectedValue] = useState(null);
 
+    const handleSelectOption = (value) => {
+        if (value !== null) { // Ignorar la selección del marcador de posición
+            const selectedOption = options.find(option => option.value === value);
+            onSelectOption(selectedOption); // Llama a la función onSelectOption con la opción seleccionada
+            setSelectedValue(value);
+            // console.log(selectedValue.forma_pago)
+        }
+    };
 
-export const Dropdown = ({placeholder, options}: DropdownProps) => {
-    const [selectedValue, setSelectedValue] = useState(null)
-    
-
-      return (
+    return (
         <View style={styles.button}>
-          <Text>Select an option:</Text>
-          <RNPickerSelect 
-            placeholder={placeholder}
-            items={options}
-            onValueChange={(value) => setSelectedValue(value)}
-            value={selectedValue}
-          />
+            <Text>Select an option:</Text>
+            <RNPickerSelect
+                placeholder={placeholder}
+                items={options}
+                onValueChange={(value) => handleSelectOption(value)}
+                value={selectedValue}
+            />
         </View>
+
       );
     };
 
