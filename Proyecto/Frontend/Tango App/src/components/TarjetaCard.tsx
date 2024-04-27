@@ -144,9 +144,9 @@ export const TarjetaCard = () => {
       />
       {errors.numeroDocumento ? <Text style={styles.error}>{errors.numeroDocumento}</Text> : null}
       <View style={styles.buttonContainer}>
-      <ButtonGood title='Pagar' onPress={handlePagar} style={{button:{  backgroundColor: 'blue',
+      <ButtonGood title='Pagar' onPress={handlePagar} style={{button:{  backgroundColor: '#214E34',
        padding: 10,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: 'center',
         }, buttonText:{ color: 'white',
         fontSize: 16,}}}/>
@@ -166,7 +166,7 @@ export const TarjetaCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#DFF8EB',
     borderRadius: 10,
     padding: 20,
     marginBottom: 20,
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+    backgroundColor: 'white'
   },
   error: {
     color: 'red',

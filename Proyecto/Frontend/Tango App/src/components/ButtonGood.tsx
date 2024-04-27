@@ -18,3 +18,4 @@ interface ButtonGoodProps {
       </Pressable>
     );
   };
+

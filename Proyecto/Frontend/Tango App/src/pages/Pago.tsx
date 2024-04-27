@@ -26,9 +26,9 @@ export const Pago = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
       <TarjetaCard />
-      <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: 'blue',
+      <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
        padding: 10,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: 'center',
         }, buttonText:{ color: 'white',
         fontSize: 16,}}}/>
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'space-between',
     flex: 1,
+    backgroundColor: '#cdcdcd'
   },
   buttonContainer:{
     marginBottom: 20

@@ -39,13 +39,13 @@ export const Dropdown = ({placeholder, options}: DropdownProps) => {
 
     const styles = StyleSheet.create({
         button: {
-            backgroundColor: '#fef9cc',
+            backgroundColor: '#DFF8EB',
             padding: 10,
             borderRadius: 5,
             alignItems: 'center',
           },
           buttonText: {
-            color: '#0f1b38',
+            color: '#011638',
             fontSize: 16,
           },
     })
