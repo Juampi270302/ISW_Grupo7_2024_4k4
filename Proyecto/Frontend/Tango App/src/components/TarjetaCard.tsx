@@ -1,7 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { ScrollView, StyleSheet, Animated, Easing, Text, View, TextInput, Alert } from 'react-native';
 import { ButtonGood } from '@/components/ButtonGood';
+import {RadioButton} from "react-native-paper";
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useNavigation} from "@react-navigation/native";
+import * as process from "node:process";
 
 export const TarjetaCard = () => {
   // Define los estados para almacenar los datos de la tarjeta y los mensajes de error
@@ -9,15 +13,17 @@ export const TarjetaCard = () => {
   const [pin, setPin] = useState('');
   const [nombreCompleto, setNombreCompleto] = useState('');
   const [tipo, setTipo] = useState('');
+  const [tipoPago, setTipoPago] = useState("")
   const [numeroDocumento, setNumeroDocumento] = useState('');
   const [errors, setErrors] = useState({
     numero: '',
+    noVisaMaster: '',
     pin: '',
     numeroDocumento: ''
   });
   const [randomNumber, setRandomNumber] = useState('');
   const [tickAnimation] = useState(new Animated.Value(0));
-
+  const [saldoSuficiente, setSaldoSuficiente] = useState(true);
 
   useEffect(() => {
     generateRandomNumber();
@@ -44,16 +50,53 @@ export const TarjetaCard = () => {
         easing: Easing.ease,
         useNativeDriver: true,
       }).start();
-    }, 4000);
+    }, 3000);
+  };
+  const navigation = useNavigation()
+  const handlePagar = () => {
+    if (errors.numero || errors.pin || errors.numeroDocumento) {
+      Alert.alert('Error', 'Por favor, corrija los campos con errores antes de continuar.');
+      return;
+    } else {
+      const noHayPlata = Math.floor(Math.random() * (2 - 1 + 1)) + 1
+      if (noHayPlata == 1) {
+        setSaldoSuficiente(false)
+      } else {
+        setSaldoSuficiente(true)
+      }
+      animateTick();
+    }
   };
 
-  const handlePagar = () => {
-    console.log('se ha pagado');
-    animateTick();
-  };
+  useEffect(() => {
+    if (numero.toString().length >= 2) {
+      const dosPrimerosDigitos = numero.toString().slice(0,2)
+      const arrayMastercard = ["51", "52", "53", "54", "55"]
+      if (arrayMastercard.includes(dosPrimerosDigitos)) {
+        setTipoPago("Mastercard")
+      }
+    }
+    if (numero.toString().slice(0,1) == "4") {
+      setTipoPago("Visa")
+    }
+    if(numero.toString().length ==0 ){
+      setTipoPago("")
+    }
+  }, [numero]);
 
   const handleNumeroChange = (value) => {
     setNumero(value);
+    if (!/^(4|[5][1-5])\d*/.test(value)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        noVisaMaster: 'El numero de tarjeta debe comenzar con 4 - Visa o 51-55 - Mastercard'
+      }))
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        noVisaMaster: ''
+      }));
+    }
     if (!/^\d{15,19}$/.test(value)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -99,22 +142,43 @@ export const TarjetaCard = () => {
 
   const handleSubmit = () => {
     // Realiza las validaciones finales antes de enviar los datos
-    if (errors.numero || errors.pin || errors.numeroDocumento) {
-      Alert.alert('Error', 'Por favor, corrija los campos con errores antes de continuar.');
-      return;
-    }
+
     // Aquí puedes enviar los datos
     // Por ejemplo: enviarDatos(numero, pin, nombreCompleto, tipo, numeroDocumento);
   };
 
   return (
     <View style={styles.container}>
+      <View style={{alignItems:"center"}}>
+        <Text>Datos de la tarjeta</Text>
+      </View>
+      <View style={{marginBottom:10}}>
+        <Text>Seleccione el tipo de tarjeta</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <RadioButton
+              value="Debito"
+              status={ tipo === 'Debito' ? 'checked' : 'unchecked' }
+              onPress={() => setTipo('Debito')}
+          />
+          <Text>Debito</Text>
+        </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <RadioButton
+              value="Credito"
+              status={ tipo === 'Credito' ? 'checked' : 'unchecked' }
+              onPress={() => setTipo('Credito')}
+          />
+          <Text>Credito</Text>
+        </View>
+      </View>
       <TextInput
         style={styles.input}
         placeholder="Número de tarjeta"
         value={numero}
         onChangeText={handleNumeroChange}
       />
+      {tipoPago && <Text>Tarjeta {tipo} {tipoPago}</Text>}
+      {errors.noVisaMaster ? <Text style={styles.error}>{errors.noVisaMaster}</Text>:null}
       {errors.numero ? <Text style={styles.error}>{errors.numero}</Text> : null}
       <TextInput
         style={styles.input}
@@ -129,12 +193,6 @@ export const TarjetaCard = () => {
         placeholder="Nombre completo"
         value={nombreCompleto}
         onChangeText={setNombreCompleto}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Tipo de tarjeta"
-        value={tipo}
-        onChangeText={setTipo}
       />
       <TextInput
         style={styles.input}
@@ -153,11 +211,20 @@ export const TarjetaCard = () => {
         </View>
         <View style={styles.tickWrapper}>
           <Animated.View style={[styles.tickContainer, { opacity: tickAnimation }]}>
-            <View style={styles.tickContent}>
-              <Icon name="check-circle" size={50} color="green" />
-              <Text>El pago se procesó correctamente</Text>
-              <Text>Numero de pago: {randomNumber}</Text>
-            </View>
+            {saldoSuficiente ? (
+                    <View style={styles.tickContent}>
+                      <Icon name="check-circle" size={50} color="green" />
+                      <Text>El pago se procesó correctamente</Text>
+                      <Text>Numero de pago: {randomNumber}</Text>
+                    </View>
+            )
+                : (
+                    <View style={styles.tickContent}>
+                      <Icon name="exclamation-circle" size={50} color="red" />
+                      <Text>El pago no pudo procesarse</Text>
+                      <Text>Motivo: Saldo insuficiente</Text>
+                    </View>
+            )}
           </Animated.View>
         </View>
     </View>

@@ -22,18 +22,18 @@ export const Pago = () => {
   };
 
   return (
-    <SafeAreaView style={styles.MainContainer}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
-      <TarjetaCard />
-      <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: 'blue',
-       padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-        }, buttonText:{ color: 'white',
-        fontSize: 16,}}}/>
-      </ScrollView>
-    </SafeAreaView>
+      <SafeAreaView style={styles.MainContainer}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
+          <TarjetaCard />
+          <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: 'blue',
+              padding: 10,
+              borderRadius: 5,
+              alignItems: 'center',
+            }, buttonText:{ color: 'white',
+              fontSize: 16,}}}/>
+        </ScrollView>
+      </SafeAreaView>
   );
 };
 
