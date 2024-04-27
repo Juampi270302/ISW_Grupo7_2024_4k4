@@ -29,7 +29,12 @@ export const TransportistaCard = (props: TransportistaCardProps) =>{
                 {forma_pago.map((pago, index) => (
             <Text key={index}>{pago.forma_pago}</Text>
             ))}
-        <ButtonGood title='Ingresar para pagar' onPress={handleIngresarPress} />
+        <ButtonGood title='Ingresar para pagar' onPress={handleIngresarPress} style={{button:{  backgroundColor: 'blue',
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+      marginBottom: 20}, buttonText:{ color: 'white',
+      fontSize: 16,}}}  />
         </View>
     )
 }

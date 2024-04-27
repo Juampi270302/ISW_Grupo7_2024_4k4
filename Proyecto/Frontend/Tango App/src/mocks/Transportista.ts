@@ -1,11 +1,14 @@
 import { Transportista, FormaPago} from "@/utils/Types";
 
-const formaPagoEfectivo: FormaPago = {
-    forma_pago: 'Efectivo'
+const formaPagoContadoAlRetirar: FormaPago = {
+    forma_pago: 'Contado al retirar'
   };
   
   const formaPagoTarjeta: FormaPago = {
     forma_pago: 'Tarjeta'
+  };
+  const formaPagoContadoContraEntrega: FormaPago = {
+    forma_pago: 'Contado contra entrega'
   };
   
 
@@ -17,7 +20,7 @@ const formaPagoEfectivo: FormaPago = {
       fecha_retiro: '2024-04-24',
       fecha_traslado: '2024-04-25',
       importe: 100,
-      forma_pago: [formaPagoEfectivo],
+      forma_pago: [formaPagoContadoAlRetirar, formaPagoContadoContraEntrega],
     },
     {
       id: 2,
@@ -35,6 +38,6 @@ const formaPagoEfectivo: FormaPago = {
       fecha_retiro: '2024-04-26',
       fecha_traslado: '2024-04-27',
       importe: 90,
-      forma_pago: [formaPagoEfectivo, formaPagoTarjeta],
+      forma_pago: [formaPagoContadoAlRetirar, formaPagoTarjeta],
     },
   ];
