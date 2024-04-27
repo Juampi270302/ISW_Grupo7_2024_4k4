@@ -147,6 +147,8 @@ export const TarjetaCard = () => {
     // Por ejemplo: enviarDatos(numero, pin, nombreCompleto, tipo, numeroDocumento);
   };
 
+
+
   return (
     <View style={styles.container}>
       <View style={{alignItems:"center"}}>
