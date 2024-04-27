@@ -19,9 +19,21 @@ export const PagoCard = ({ formasPago, onSelectFormaPago }: PagoCardProps) => {
         onSelectFormaPago(selectedOption.value);
     };
 
-    return (
-        <View>
+
+    return(
+        <View style={styles.cardContainer}>
             <Dropdown placeholder={placeholder} options={options} onSelectOption={handleSelectFormaPago} />
         </View>
     )
 };
+
+
+const styles = StyleSheet.create({
+    cardContainer: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 10,
+        backgroundColor:'#DFF8EB'
+    },})

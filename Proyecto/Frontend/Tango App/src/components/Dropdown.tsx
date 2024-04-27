@@ -41,18 +41,21 @@ export const Dropdown = ({ placeholder, options, onSelectOption }: DropdownProps
                 value={selectedValue}
             />
         </View>
-    );
-};
 
-const styles = StyleSheet.create({
-    button: {
-        backgroundColor: '#fef9cc',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: '#0f1b38',
-        fontSize: 16,
-    },
-});
+      );
+    };
+
+    const styles = StyleSheet.create({
+        button: {
+            backgroundColor: '#DFF8EB',
+            padding: 10,
+            borderRadius: 5,
+            alignItems: 'center',
+          },
+          buttonText: {
+            color: '#011638',
+            fontSize: 16,
+          },
+    })
+
+
