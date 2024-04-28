@@ -18,7 +18,7 @@ export const Pago = () => {
   const fechaPagoEntrega = route.params?.fecha_traslado;
   const importe = route.params?.importe
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
-
+  const [showButtonCC, setShowButtonCC] = useState(false);
 
   const handleConfirmarCotizacion = () => {
     console.log('Se confirmo la cotizacion')
@@ -40,6 +40,7 @@ export const Pago = () => {
 
   const handleFormaPagoChange = (selectedOption) => {
     setSelectedFormaPagoLabel(selectedOption.forma_pago);
+    setShowButtonCC(true)
     console.log(selectedOption.forma_pago)
   };
 
@@ -48,12 +49,12 @@ export const Pago = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
       {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
-      <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
-       padding: 10,
-        borderRadius: 20,
-        alignItems: 'center',
-        }, buttonText:{ color: 'white',
-        fontSize: 16,}}}/>
+        {showButtonCC && <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
+            padding: 10,
+            borderRadius: 20,
+            alignItems: 'center',
+          }, buttonText:{ color: 'white',
+            fontSize: 16,}}}/>}
       </ScrollView>
     </SafeAreaView>
   );
