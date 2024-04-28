@@ -47,10 +47,10 @@ export const TransportistaCard = (props: TransportistaCardProps) =>{
 const styles = StyleSheet.create({
     cardContainer: {
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: 'black',
         borderRadius: 10,
-        padding: 10,
-        marginBottom: 10,
+        padding: 15,
+        marginBottom: 15,
         backgroundColor:'#DFF8EB'
     },
     title: {
@@ -58,4 +58,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 5,
     },
+
 }) 

@@ -8,6 +8,7 @@ import  { useState, useEffect } from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
+import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
 
 
 export const Pago = () => {
@@ -23,7 +24,7 @@ export const Pago = () => {
     console.log('Se confirmo la cotizacion')
   }
 
-  const renderFormaPagoCard = (selectedOption) => {
+  const renderFormaPagoCard = (selectedOption: string) => {
 
     switch (selectedOption) {
       case 'Tarjeta':
@@ -46,9 +47,8 @@ export const Pago = () => {
     <SafeAreaView style={styles.MainContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
-
-      <TarjetaCard />
-      <ButtonGood title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
+      {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
+      <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
        padding: 10,
         borderRadius: 20,
         alignItems: 'center',
