@@ -204,7 +204,7 @@ export const TarjetaCard = () => {
       />
       {errors.numeroDocumento ? <Text style={styles.error}>{errors.numeroDocumento}</Text> : null}
       <View style={styles.buttonContainer}>
-      <ButtonGood title='Pagar' onPress={handlePagar} style={{button:{  backgroundColor: '#214E34',
+      <ButtonGood title='Pagar' onPress={handlePagar} style={{button:{  backgroundColor: '#364156',
        padding: 10,
         borderRadius: 20,
         alignItems: 'center',

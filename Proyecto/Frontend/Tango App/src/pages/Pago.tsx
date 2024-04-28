@@ -48,7 +48,7 @@ export const Pago = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
       {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
-      <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
+      <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#364156',
        padding: 10,
         borderRadius: 20,
         alignItems: 'center',
