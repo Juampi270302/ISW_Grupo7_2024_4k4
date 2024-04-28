@@ -15,7 +15,12 @@ export const TransportistaCard = (props: TransportistaCardProps) =>{
 
     const handleIngresarPress = () =>{
         console.log("Se ha apretado el boton")
-        navigation.navigate('Pago', { formasPago: forma_pago });
+        navigation.navigate('Pago', {
+            formasPago: forma_pago,
+            importe: importe,
+            fecha_retiro: fecha_retiro,
+            fecha_traslado: fecha_traslado
+        });
     }
 
     return (
@@ -29,9 +34,9 @@ export const TransportistaCard = (props: TransportistaCardProps) =>{
                 {forma_pago.map((pago, index) => (
             <Text key={index}>{pago.forma_pago}</Text>
             ))}
-        <ButtonGood title='Ingresar para pagar' onPress={handleIngresarPress} style={{button:{  backgroundColor: 'blue',
+        <ButtonGood title='Ingresar para pagar' onPress={handleIngresarPress} style={{button:{  backgroundColor: '#214E34',
       padding: 10,
-      borderRadius: 5,
+      borderRadius: 20,
       alignItems: 'center',
       marginBottom: 20}, buttonText:{ color: 'white',
       fontSize: 16,}}}  />
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         marginBottom: 10,
-        backgroundColor:'#e4e9f1'
+        backgroundColor:'#DFF8EB'
     },
     title: {
         fontSize: 18,
