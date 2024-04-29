@@ -57,12 +57,13 @@ export const Pago = () => {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
       {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
-        {showButtonCC && <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#214E34',
-            padding: 10,
-            borderRadius: 20,
-            alignItems: 'center',
-          }, buttonText:{ color: 'white',
-            fontSize: 16,}}}/>}
+
+        {showButtonCC && <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#364156',
+       padding: 10,
+        borderRadius: 20,
+        alignItems: 'center',
+        }, buttonText:{ color: 'white',
+        fontSize: 16,}}}/>}
       </ScrollView>
     </SafeAreaView>
   );

@@ -221,6 +221,7 @@ export const TarjetaCard = () => {
     const handleSubmit = () => {
         // Realiza las validaciones finales antes de enviar los datos
 
+
         // Aquí puedes enviar los datos
         // Por ejemplo: enviarDatos(numero, pin, nombreCompleto, tipo, numeroDocumento);
     };
@@ -319,16 +320,14 @@ export const TarjetaCard = () => {
             />
             {errors.numeroDocumento ? <Text style={styles.error}>{errors.numeroDocumento}</Text> : null}
             <View style={styles.buttonContainer}>
-                <ButtonGood title='Pagar' onPress={handlePagar} style={{
-                    button: {
-                        backgroundColor: '#214E34',
-                        padding: 10,
-                        borderRadius: 20,
-                        alignItems: 'center',
-                    }, buttonText: {
-                        color: 'white',
-                        fontSize: 16,
-                    }
+                <ButtonGood title='Pagar' onPress={handlePagar} style={
+                  {button:{  backgroundColor: '#364156',
+                    padding: 10,
+                    borderRadius: 20,
+                    alignItems: 'center',
+                    }, 
+                  buttonText:{ color: 'white',
+                    fontSize: 16,}
                 }}/>
             </View>
             <View style={styles.tickWrapper}>
