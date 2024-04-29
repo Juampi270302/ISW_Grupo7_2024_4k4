@@ -35,4 +35,11 @@ type ProcesamientoPago = {
     codigoPago:number
 }
 
-export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago}
+type DatosEmail = {
+    "nombreDadorCarga":string,
+    "nombreTransportista": string,
+    "emailTransportista":string,
+    "formaPago":string
+}
+
+export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago, DatosEmail}

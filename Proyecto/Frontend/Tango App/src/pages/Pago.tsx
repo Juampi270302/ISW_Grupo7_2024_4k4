@@ -9,7 +9,8 @@ import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
-
+import {sendEmail} from "@/services/email.service";
+import {DatosEmail} from "@/utils/Types";
 
 export const Pago = () => {
   const route = useRoute();
@@ -20,7 +21,14 @@ export const Pago = () => {
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
   const [showButtonCC, setShowButtonCC] = useState(false);
 
-  const handleConfirmarCotizacion = () => {
+  const handleConfirmarCotizacion = async () => {
+    let data: DatosEmail = {
+      nombreDadorCarga: "Juan Pablo",
+      nombreTransportista: "Jose Transportista",
+      emailTransportista: "jp_lambertucci@outlook.com",
+      formaPago: String(selectedFormaPagoLabel)
+    }
+    await sendEmail(data).then(data => console.log(data)).catch((err) => console.log(err));
     console.log('Se confirmo la cotizacion')
   }
 
