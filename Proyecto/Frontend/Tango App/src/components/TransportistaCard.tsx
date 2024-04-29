@@ -35,7 +35,7 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
             {forma_pago.map((pago, index) => (
                 <Text key={index}>{pago.forma_pago}</Text>
             ))}
-            <ButtonGood title='Ingresar para pagar' onPress={handleIngresarPress} style={{
+            <ButtonGood title='Ingresar para confirmar' onPress={handleIngresarPress} style={{
                 button: {
                     backgroundColor: '#214E34',
                     padding: 10,
@@ -46,7 +46,7 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
                     color: 'white',
                     fontSize: 16,
                 }
-            }}/>
+            }} disabled={false}/>
         </View>
     )
 }

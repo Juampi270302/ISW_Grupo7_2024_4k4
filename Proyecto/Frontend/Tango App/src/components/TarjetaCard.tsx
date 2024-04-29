@@ -28,7 +28,7 @@ export const TarjetaCard = () => {
         numeroDocumento: ''
     });
     const [tickAnimation] = useState(new Animated.Value(0));
-    const [pagoProcesado, setPagoProcesado] = useState(true)
+    const [pagoProcesado, setPagoProcesado] = useState(false)
     const [detallePago, setDetallePago] = useState<ProcesamientoPago>()
 
     const animateTick = () => {
@@ -329,7 +329,7 @@ export const TarjetaCard = () => {
                         color: 'white',
                         fontSize: 16,
                     }
-                }}/>
+                }} disabled={pagoProcesado}/>
             </View>
             <View style={styles.tickWrapper}>
                 <Animated.View style={[styles.tickContainer, {opacity: tickAnimation}]}>

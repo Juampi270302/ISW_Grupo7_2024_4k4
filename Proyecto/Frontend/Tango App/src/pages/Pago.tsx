@@ -10,7 +10,7 @@ import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
 import {sendEmail} from "@/services/email.service";
-import {DatosEmail} from "@/utils/Types";
+import {DatosEmail, TarjetaPago} from "@/utils/Types";
 
 export const Pago = () => {
   const route = useRoute();
