@@ -21,6 +21,7 @@ export const CustomAlertCambioEst = ({ visible, onClose }) => {
             </DialogFooter>
         </Dialog>
     );
+
 };
 
 const styles = StyleSheet.create({
@@ -42,3 +43,4 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 });
+

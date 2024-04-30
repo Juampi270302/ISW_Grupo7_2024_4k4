@@ -16,6 +16,7 @@ import CustomAlertCambioEst from "@/components/CustomAlertCambioEst";
 import CustomAlertEnvio from "@/components/CustomAlertEnvio";
 import {DatosTransportistaCard} from "@/components/DatosTransportistaCard";
 
+
 export const Pago = () => {
     const route = useRoute();
     const datosPago = route.params?.tarjetaPago;
@@ -37,6 +38,7 @@ export const Pago = () => {
             navigation.navigate("Cotizaciones")
             // Si la cotización ya ha sido confirmada, mostrar un mensaje de alerta
             //Alert.alert("Cotización ya confirmada", "Usted ya ha aceptado una cotización");
+
             return; // Salir de la función para evitar continuar con la confirmación
         }
         let data: DatosEmail = {
@@ -77,6 +79,7 @@ export const Pago = () => {
             case "Contado al retirar":
                 return <ContadoAlRetirarCard monto={datosPago.importe} fechaPago={datosPago.fecha_retiro}/>;
             case "Contado contra entrega":
+
                 return <ContadoContraEntregaCard monto={datosPago.importe} fechaPago={datosPago.fecha_traslado}/>;
             default:
                 return null;
@@ -147,16 +150,19 @@ const styles = StyleSheet.create({
     },
     tickContainer: {
         backgroundColor: "white",
+
         borderRadius: 10,
         padding: 20,
     },
     tickContent: {
         alignItems: "center",
+
     },
     tickText: {
         marginTop: 10,
         fontSize: 16,
         color: "black",
         textAlign: "center",
+
     },
 });
