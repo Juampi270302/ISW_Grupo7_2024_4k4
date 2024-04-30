@@ -34,7 +34,7 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
             importe: importe,
             forma_pago: forma_pago
         }
-        setTransportista(datosTransportista)
+        setTransportista(props.transportista)
 
         navigation.navigate('Pago', {tarjetaPago: tarjetaPago, datosTransportista: datosTransportista});
 

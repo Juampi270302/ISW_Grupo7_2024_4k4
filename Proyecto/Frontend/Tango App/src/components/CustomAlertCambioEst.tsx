@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import Dialog, { DialogContent, DialogFooter, DialogButton } from 'react-native-popup-dialog';
 
-const CustomAlertDialog = ({ visible, onClose }) => {
+const CustomAlertCambioEst = ({ visible, onClose }) => {
+  const [dialogCambioEst, setDialogCambioEst] = useState(false);
   return (
     <Dialog
       visible={visible}
@@ -42,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomAlertDialog;
+export default CustomAlertCambioEst;
