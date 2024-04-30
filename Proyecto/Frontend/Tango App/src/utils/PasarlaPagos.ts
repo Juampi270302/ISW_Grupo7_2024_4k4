@@ -20,7 +20,7 @@ let tarjetasNoValidas: DatosT[] = [
         tipoDocumento:"DNI",
         nroDocumento: "12345678"
     }
-]
+];
 
 export const procesarPago = (datosT: DatosT) => {
     const fechaActual: Date = new Date()
@@ -62,4 +62,4 @@ export const procesarPago = (datosT: DatosT) => {
         codigoPago: rnd
     }
     return resultadoProceso
-}
+};
