@@ -1,9 +1,7 @@
-import React, {View, Text, StyleSheet} from 'react-native'
-
-import {useNavigation} from '@react-navigation/native'
-
-import {Transportista, TarjetaPago} from '@/utils/Types'
-import {ButtonGood} from './ButtonGood'
+import React, {View, Text, StyleSheet} from "react-native";
+import {useNavigation} from "@react-navigation/native";
+import {Transportista, TarjetaPago} from "@/utils/Types";
+import {ButtonGood} from "./ButtonGood";
 import {useContext, useState} from "react";
 import {TransportistasContext} from "@/contexts/TransportistasContext";
 
@@ -34,9 +32,9 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
             importe: importe,
             forma_pago: forma_pago
         }
-        setTransportista(datosTransportista)
+        setTransportista(props.transportista)
 
-        navigation.navigate('Pago', {tarjetaPago: tarjetaPago, datosTransportista: datosTransportista});
+        navigation.navigate("Pago", {tarjetaPago: tarjetaPago, datosTransportista: datosTransportista});
 
     }
 
@@ -58,13 +56,13 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
                     : "Ingresar para confirmar"
             } onPress={handleIngresarPress} style={{
                 button: {
-                    backgroundColor: '#364156',
+                    backgroundColor: "#364156",
                     padding: 10,
                     borderRadius: 20,
-                    alignItems: 'center',
+                    alignItems: "center",
                     marginBottom: 20
                 }, buttonText: {
-                    color: 'white',
+                    color: "white",
                     fontSize: 16,
                 }
             }} disabled={false}/>
@@ -75,23 +73,22 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
 const styles = StyleSheet.create({
     cardContainer: {
         borderWidth: 1,
-        borderColor: '#DFF8EB',
+        borderColor: "#DFF8EB",
         borderRadius: 10,
         padding: 15,
         marginBottom: 15,
-        backgroundColor: '#DFF8EB'
+        backgroundColor: "#DFF8EB"
     },
     title: {
         fontSize: 22,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         marginBottom: 5,
-        textAlign: 'center'
+        textAlign: "center"
     },
     textoNegrita: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
     textoNormal: {
-        fontWeight: 'normal',
+        fontWeight: "normal",
     },
-
-}) 
+});

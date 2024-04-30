@@ -10,9 +10,9 @@ type Transportista = {
 }
 
 type TarjetaPago = {
-    formasPago: FormaPago[]
-    importe: number
-    fecha_retiro: string
+    formasPago: FormaPago[],
+    importe: number,
+    fecha_retiro: string,
     fecha_traslado: string
 }
 
@@ -21,18 +21,18 @@ type FormaPago = {
 }
 
 type DatosT = {
-    tipoTarjeta: string
-    numeroTarjeta: string
-    fechaVencimiento: string
-    pin: string
-    nombreCompleto: string
-    tipoDocumento: string
+    tipoTarjeta: string,
+    numeroTarjeta: string,
+    fechaVencimiento: string,
+    pin: string,
+    nombreCompleto: string,
+    tipoDocumento: string,
     nroDocumento: string
 }
 
 type ProcesamientoPago = {
-    pagoExistoso: boolean
-    descripcion: string
+    pagoExistoso: boolean,
+    descripcion: string,
     codigoPago: number
 }
 

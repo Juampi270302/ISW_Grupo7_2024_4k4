@@ -20,7 +20,7 @@
     "expo-status-bar": "~1.11.1",
     "nodemon": "^3.1.0",
     "react": "18.2.0",
-    "react-native": "0.73.4",
+    "react-native": "0.73.6",
     "react-native-neat-date-picker": "^1.4.12",
     "react-native-paper": "^5.12.3",
     "react-native-picker-select": "^9.1.3",

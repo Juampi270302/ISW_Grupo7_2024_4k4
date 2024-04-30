@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import RNPickerSelect from 'react-native-picker-select';
-import { View, Text, StyleSheet } from 'react-native';
-import { FormaPago } from '@/utils/Types';
+import React, { useState } from "react";
+import RNPickerSelect from "react-native-picker-select";
+import { View, Text, StyleSheet } from "react-native";
+import { FormaPago } from "@/utils/Types";
 
 interface PlaceHolderProps {
     label: string;
@@ -42,20 +42,20 @@ export const Dropdown = ({ placeholder, options, onSelectOption }: DropdownProps
             />
         </View>
 
-      );
-    };
+    );
+};
 
-    const styles = StyleSheet.create({
-        button: {
-            backgroundColor: '#DFF8EB',
-            padding: 10,
-            borderRadius: 5,
-            alignItems: 'center',
-          },
-          buttonText: {
-            color: '#011638',
-            fontSize: 16,
-          },
-    })
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: "#DFF8EB",
+        padding: 10,
+        borderRadius: 5,
+        alignItems: "center",
+    },
+    buttonText: {
+        color: "#011638",
+        fontSize: 16,
+    },
+});
 
 

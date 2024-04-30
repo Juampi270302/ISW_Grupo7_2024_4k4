@@ -1,11 +1,9 @@
-import {TransportistaCard} from '@/components/TransportistaCard'
-import React, {ScrollView, StyleSheet} from 'react-native'
-import {SafeAreaView} from 'react-native-safe-area-context'
-
-import {Transportista} from '@/utils/Types'
+import {TransportistaCard} from "@/components/TransportistaCard";
+import React, {ScrollView, StyleSheet} from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {Transportista} from "@/utils/Types";
 import {useContext} from "react";
 import {TransportistasContext} from "@/contexts/TransportistasContext";
-
 
 export const Main = () => {
     const {transportistas} = useContext(TransportistasContext)
@@ -23,8 +21,8 @@ export const Main = () => {
 
 const styles = StyleSheet.create({
     MainContainer: {
-        height: '100%',
+        height: "100%",
         padding: 20,
-        backgroundColor: '#cdcdcd'
+        backgroundColor: "#cdcdcd"
     },
-})
+});

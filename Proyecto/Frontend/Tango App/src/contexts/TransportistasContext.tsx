@@ -2,6 +2,10 @@ import {Transportista} from "@/utils/Types";
 import {createContext, Dispatch, SetStateAction, useState} from "react";
 import {transportistasMock} from "@/mocks/Transportista";
 
+type TransportistasProviderProps = {
+    children: React.ReactNode;
+}
+
 interface TransportistasContextInterface {
     transportistas: Transportista[];
     setTransportistas: Dispatch<SetStateAction<Transportista[]>>,
@@ -30,13 +34,9 @@ const defaultState = {
     estadoCotizacion: "Disponible para confirmar",
     setEstadoCotizacion: (estadoCotizacion:string) => {
     }
-} as TransportistasContextInterface
+} as TransportistasContextInterface;
 
 export const TransportistasContext = createContext(defaultState);
-
-type TransportistasProviderProps = {
-    children: React.ReactNode;
-}
 
 export const TransportistasContextProvider = ({children}: TransportistasProviderProps) => {
     const [transportistas, setTransportistas] =

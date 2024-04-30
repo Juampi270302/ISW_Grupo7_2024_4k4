@@ -1,4 +1,4 @@
-import React, {View, Text, StyleSheet, Image} from 'react-native'
+import React, {View, Text, StyleSheet, Image} from "react-native";
 
 export const DatosTransportistaCard = ({nombre, calificacion, fecha_retiro, fecha_traslado, importe}) => {
 
@@ -9,7 +9,7 @@ export const DatosTransportistaCard = ({nombre, calificacion, fecha_retiro, fech
             <Text style={styles.textoNegrita}>Fecha de retiro: <Text style={styles.textoNormal}>{fecha_retiro}</Text></Text>
             <Text style={styles.textoNegrita}>Fecha de traslado: <Text style={styles.textoNormal}>{fecha_traslado}</Text></Text>
             <Text style={styles.textoNegrita}>Importe: <Text style={styles.textoNormal}>${importe}</Text></Text>
-            <Image source={require('../assets/app-icon-person.png')} style={styles.icon} />
+            <Image source={require("../assets/app-icon-person.png")} style={styles.icon} />
         </View>
     )
 }
@@ -17,27 +17,27 @@ export const DatosTransportistaCard = ({nombre, calificacion, fecha_retiro, fech
 const styles = StyleSheet.create({
     cardContainer: {
         borderWidth: 1,
-        borderColor: '#DFF8EB',
+        borderColor: "#DFF8EB",
         borderRadius: 10,
         padding: 15,
         marginBottom: 15,
-        backgroundColor: '#DFF8EB',
-        position: 'relative', // Asegura que la posición absoluta se base en este contenedor
+        backgroundColor: "#DFF8EB",
+        position: "relative", // Asegura que la posición absoluta se base en este contenedor
     },
     title: {
         fontSize: 22,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         marginBottom: 5,
-        textAlign: 'left'
+        textAlign: "left",
     },
     textoNegrita: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
     textoNormal: {
-        fontWeight: 'normal',
+        fontWeight: "normal",
     },
     icon: {
-        position: 'absolute',
+        position: "absolute",
         top: 20,
         right: 10,
         width: 100, // Ajusta el ancho y el alto según tu preferencia
