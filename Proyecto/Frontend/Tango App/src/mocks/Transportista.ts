@@ -20,6 +20,7 @@ const formaPagoContadoAlRetirar: FormaPago = {
       fecha_retiro: '2024-04-24',
       fecha_traslado: '2024-04-25',
       importe: 100,
+      email:"jp_lambertucci@outlook.com",
       forma_pago: [formaPagoContadoAlRetirar, formaPagoContadoContraEntrega],
     },
     {
@@ -29,6 +30,7 @@ const formaPagoContadoAlRetirar: FormaPago = {
       fecha_retiro: '2024-04-25',
       fecha_traslado: '2024-04-26',
       importe: 120,
+      email:"jp_lambertucci@outlook.com",
       forma_pago: [formaPagoTarjeta],
     },
     {
@@ -38,6 +40,7 @@ const formaPagoContadoAlRetirar: FormaPago = {
       fecha_retiro: '2024-04-26',
       fecha_traslado: '2024-04-27',
       importe: 90,
+      email:"lambertuccijp@gmail.com",
       forma_pago: [formaPagoContadoAlRetirar, formaPagoTarjeta],
     },
   ];

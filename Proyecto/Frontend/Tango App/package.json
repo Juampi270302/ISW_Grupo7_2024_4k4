@@ -4,6 +4,7 @@
   "description": "",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "dev": "expo dev",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -17,6 +18,7 @@
     "expo": "~50.0.8",
     "expo-build-properties": "^0.11.1",
     "expo-status-bar": "~1.11.1",
+    "nodemon": "^3.1.0",
     "react": "18.2.0",
     "react-native": "0.73.4",
     "react-native-neat-date-picker": "^1.4.12",

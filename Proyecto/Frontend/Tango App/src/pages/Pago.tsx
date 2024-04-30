@@ -1,35 +1,51 @@
 import { PagoCard } from '@/components/PagoCard';
 import React, { ScrollView, StyleSheet, Animated, Easing, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import { ButtonGood } from '@/components/ButtonGood';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import  { useState, useEffect } from 'react';
+import {useState, useEffect, useContext} from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
 import {sendEmail} from "@/services/email.service";
 import {DatosEmail, TarjetaPago} from "@/utils/Types";
+import {TransportistasContext} from "@/contexts/TransportistasContext";
 
 export const Pago = () => {
-  const route = useRoute();
-  const formasPago = route.params?.formasPago;
-  const fechaPagoRetiro = route.params?.fecha_retiro;
-  const fechaPagoEntrega = route.params?.fecha_traslado;
-  const importe = route.params?.importe
+
+  const {transportista, setEstadoCotizacion} = useContext(TransportistasContext)
+
+  const formasPago = transportista.forma_pago;
+  const fechaPagoRetiro = transportista.fecha_retiro;
+  const fechaPagoEntrega = transportista.fecha_traslado;
+  const importe = transportista.importe
+
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
   const [showButtonCC, setShowButtonCC] = useState(false);
+  const {setTransportistas} = useContext(TransportistasContext)
+  const navigation = useNavigation()
 
   const handleConfirmarCotizacion = async () => {
     let data: DatosEmail = {
-      nombreDadorCarga: "Juan Pablo",
-      nombreTransportista: "Jose Transportista",
-      emailTransportista: "jp_lambertucci@outlook.com",
+      nombreDadorCarga: "Dador Carga",
+      nombreTransportista: transportista.nombre,
+      emailTransportista: transportista.email,
       formaPago: String(selectedFormaPagoLabel)
     }
-    await sendEmail(data).then(data => console.log(data)).catch((err) => console.log(err));
-    console.log('Se confirmo la cotizacion')
+
+    await sendEmail(data)
+        .then(result => {
+          console.log(result)
+          setTransportistas([transportista])
+          setEstadoCotizacion("Confirmada")
+          navigation.navigate("Cotizaciones")
+        })
+        .catch((err) => console.log(err));
+
+
+
   }
 
   const renderFormaPagoCard = (selectedOption: string) => {
