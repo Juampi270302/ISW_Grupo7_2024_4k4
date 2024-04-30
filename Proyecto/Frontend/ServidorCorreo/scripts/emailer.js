@@ -8,4 +8,8 @@ export const transporter = nodemailer.createTransport({
         user: "tangoappisw4k4@gmail.com",
         pass: "m t m d w w o z c y h v h x k n",
     },
-});
+})
+
+transporter.verify().then(()=> {
+    console.log("Listo para enviar emails")
+})

@@ -28,7 +28,7 @@ export const TarjetaCard = () => {
         numeroDocumento: ''
     });
     const [tickAnimation] = useState(new Animated.Value(0));
-    const [pagoProcesado, setPagoProcesado] = useState(true)
+    const [pagoProcesado, setPagoProcesado] = useState(false)
     const [detallePago, setDetallePago] = useState<ProcesamientoPago>()
 
     const animateTick = () => {
@@ -320,15 +320,17 @@ export const TarjetaCard = () => {
             />
             {errors.numeroDocumento ? <Text style={styles.error}>{errors.numeroDocumento}</Text> : null}
             <View style={styles.buttonContainer}>
-                <ButtonGood title='Pagar' onPress={handlePagar} style={
-                  {button:{  backgroundColor: '#364156',
-                    padding: 10,
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    }, 
-                  buttonText:{ color: 'white',
-                    fontSize: 16,}
-                }}/>
+                <ButtonGood title='Pagar' onPress={handlePagar} style={{
+                    button: {
+                        backgroundColor: '#364156',
+                        padding: 10,
+                        borderRadius: 20,
+                        alignItems: 'center',
+                    }, buttonText: {
+                        color: 'white',
+                        fontSize: 16,
+                    }
+                }} disabled={pagoProcesado}/>
             </View>
             <View style={styles.tickWrapper}>
                 <Animated.View style={[styles.tickContainer, {opacity: tickAnimation}]}>

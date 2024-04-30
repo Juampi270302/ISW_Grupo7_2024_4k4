@@ -33,7 +33,7 @@ export const Dropdown = ({ placeholder, options, onSelectOption }: DropdownProps
 
     return (
         <View style={styles.button}>
-            <Text>Select an option:</Text>
+            <Text>Fromas de pago</Text>
             <RNPickerSelect
                 placeholder={placeholder}
                 items={options}
