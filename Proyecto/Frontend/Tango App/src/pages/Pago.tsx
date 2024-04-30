@@ -1,9 +1,7 @@
 import { PagoCard } from '@/components/PagoCard';
-import React, { ScrollView, StyleSheet, Animated, Easing, Text, View } from 'react-native';
+import React, { ScrollView, StyleSheet, Alert} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
-import { ButtonGood } from '@/components/ButtonGood';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import  { useState, useEffect } from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
@@ -11,6 +9,8 @@ import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
 import {sendEmail} from "@/services/email.service";
 import {DatosEmail} from "@/utils/Types";
+import CustomAlertDialog from '@/components/CustomAlertCambioEst';
+import CustomAlertEnvio from '@/components/CustomAlertEnvio';
 
 export const Pago = () => {
   const route = useRoute();
@@ -20,8 +20,20 @@ export const Pago = () => {
   const importe = route.params?.importe
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
   const [showButtonCC, setShowButtonCC] = useState(false);
+  const [cotizacionConfirmada, setCotizacionConfirmada] = useState(false);
+  const [dialogVisible, setDialogVisible] = useState(false);
+  const [dialogEnvio, setDialogEnvio] = useState(false);
+
+
 
   const handleConfirmarCotizacion = async () => {
+    
+    
+    if (cotizacionConfirmada) {
+      // Si la cotización ya ha sido confirmada, mostrar un mensaje de alerta
+      Alert.alert('Cotización ya confirmada', 'Usted ya ha aceptado una cotización');
+      return; // Salir de la función para evitar continuar con la confirmación
+    }
     let data: DatosEmail = {
       nombreDadorCarga: "Juan Pablo",
       nombreTransportista: "Jose Transportista",
@@ -29,7 +41,12 @@ export const Pago = () => {
       formaPago: String(selectedFormaPagoLabel)
     }
     await sendEmail(data).then(data => console.log(data)).catch((err) => console.log(err));
+
     console.log('Se confirmo la cotizacion')
+
+    setCotizacionConfirmada(true)
+    setDialogVisible(true)
+    setDialogEnvio(true)
   }
 
   const renderFormaPagoCard = (selectedOption: string) => {
@@ -64,6 +81,8 @@ export const Pago = () => {
         alignItems: 'center',
         }, buttonText:{ color: 'white',
         fontSize: 16,}}}/>}
+      <CustomAlertEnvio visible={dialogEnvio} onClose={() => setDialogEnvio(false)} />
+      <CustomAlertDialog visible={dialogVisible} onClose={() => setDialogVisible(false)} />
       </ScrollView>
     </SafeAreaView>
   );
