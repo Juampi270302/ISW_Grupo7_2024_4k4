@@ -1,23 +1,22 @@
 import { PagoCard } from '@/components/PagoCard';
-import React, { ScrollView, StyleSheet, Alert} from 'react-native';
+import React, { ScrollView, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
-import {sendEmail} from "@/services/email.service";
-import {DatosEmail} from "@/utils/Types";
+import { sendEmail } from "@/services/email.service";
+import { DatosEmail } from "@/utils/Types";
 import CustomAlertDialog from '@/components/CustomAlertCambioEst';
 import CustomAlertEnvio from '@/components/CustomAlertEnvio';
+import { DatosTransportistaCard } from '@/components/DatosTransportistaCard';
 
 export const Pago = () => {
   const route = useRoute();
-  const formasPago = route.params?.formasPago;
-  const fechaPagoRetiro = route.params?.fecha_retiro;
-  const fechaPagoEntrega = route.params?.fecha_traslado;
-  const importe = route.params?.importe
+  const datosPago = route.params?.tarjetaPago;
+  const datosTransportista = route.params?.datosTransportista;
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
   const [showButtonCC, setShowButtonCC] = useState(false);
   const [cotizacionConfirmada, setCotizacionConfirmada] = useState(false);
@@ -27,8 +26,8 @@ export const Pago = () => {
 
 
   const handleConfirmarCotizacion = async () => {
-    
-    
+
+
     if (cotizacionConfirmada) {
       // Si la cotización ya ha sido confirmada, mostrar un mensaje de alerta
       Alert.alert('Cotización ya confirmada', 'Usted ya ha aceptado una cotización');
@@ -37,7 +36,7 @@ export const Pago = () => {
     let data: DatosEmail = {
       nombreDadorCarga: "Juan Pablo",
       nombreTransportista: "Jose Transportista",
-      emailTransportista: "jp_lambertucci@outlook.com",
+      emailTransportista: "nvigliocco@gmail.com",
       formaPago: String(selectedFormaPagoLabel)
     }
     await sendEmail(data).then(data => console.log(data)).catch((err) => console.log(err));
@@ -55,9 +54,9 @@ export const Pago = () => {
       case 'Tarjeta':
         return <TarjetaCard />;
       case 'Contado al retirar':
-        return <ContadoAlRetirarCard monto={importe} fechaPago={fechaPagoRetiro}/>;
+        return <ContadoAlRetirarCard monto={datosPago.importe} fechaPago={datosPago.fecha_retiro} />;
       case 'Contado contra entrega':
-        return <ContadoContraEntregaCard monto={importe} fechaPago={fechaPagoEntrega}/>;
+        return <ContadoContraEntregaCard monto={datosPago.importe} fechaPago={datosPago.fecha_traslado} />;
       default:
         return null;
     }
@@ -72,17 +71,30 @@ export const Pago = () => {
   return (
     <SafeAreaView style={styles.MainContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <PagoCard formasPago={formasPago} onSelectFormaPago={handleFormaPagoChange} />
-      {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
 
-        {showButtonCC && <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{button:{  backgroundColor: '#364156',
-       padding: 10,
-        borderRadius: 20,
-        alignItems: 'center',
-        }, buttonText:{ color: 'white',
-        fontSize: 16,}}}/>}
-      <CustomAlertEnvio visible={dialogEnvio} onClose={() => setDialogEnvio(false)} />
-      <CustomAlertDialog visible={dialogVisible} onClose={() => setDialogVisible(false)} />
+        <DatosTransportistaCard
+          nombre={datosTransportista.nombre}
+          calificacion={datosTransportista.calificacion} 
+          fecha_retiro={datosTransportista.fecha_retiro}
+          fecha_traslado={datosTransportista.fecha_traslado}
+          importe={datosTransportista.importe}></DatosTransportistaCard>
+      
+      <PagoCard formasPago={datosPago.formasPago} onSelectFormaPago={handleFormaPagoChange} />
+        {selectedFormaPagoLabel && renderFormaPagoCard(selectedFormaPagoLabel)}
+
+        {showButtonCC && <ConfirmCotizacionButton title='Confirmar Cotizacion' onPress={handleConfirmarCotizacion} style={{
+          button: {
+            backgroundColor: '#364156',
+            padding: 10,
+            borderRadius: 20,
+            alignItems: 'center',
+          }, buttonText: {
+            color: 'white',
+            fontSize: 16,
+          }
+        }} />}
+        <CustomAlertEnvio visible={dialogEnvio} onClose={() => setDialogEnvio(false)} />
+        <CustomAlertDialog visible={dialogVisible} onClose={() => setDialogVisible(false)} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -96,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#cdcdcd'
   },
-  buttonContainer:{
+  buttonContainer: {
     marginBottom: 20
   },
   scrollViewContent: {

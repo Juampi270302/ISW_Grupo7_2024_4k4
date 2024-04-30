@@ -11,6 +11,7 @@ interface TransportistaCardProps {
 
 export const TransportistaCard = (props: TransportistaCardProps) => {
     const {nombre, calificacion, fecha_retiro, fecha_traslado, importe, forma_pago} = props.transportista
+    console.log(nombre, calificacion, fecha_retiro, fecha_traslado, importe, forma_pago)
     const navigation = useNavigation()
 
     const handleIngresarPress = () => {
@@ -21,13 +22,21 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
             fecha_retiro: fecha_retiro,
             fecha_traslado: fecha_traslado
         }
-        navigation.navigate('Pago', tarjetaPago);
+        let datosTransportista: Transportista = {
+            nombre: nombre,
+            calificacion: calificacion,
+            fecha_retiro: fecha_retiro,
+            fecha_traslado: fecha_traslado,
+            importe: importe,
+            forma_pago: forma_pago
+        }
+        navigation.navigate('Pago', {tarjetaPago: tarjetaPago, datosTransportista: datosTransportista});
     }
 
     return (
         <View style={styles.cardContainer}>
             <Text style={styles.title}>{nombre}</Text>
-            <Text style={styles.textoNegrita}>Calificación: <Text style={styles.textoNormal}>{calificacion}</Text></Text>
+            <Text style={styles.textoNegrita}>Calificación: <Text style={styles.textoNormal}>{calificacion}⭐</Text></Text>
             <Text style={styles.textoNegrita}>Fecha de retiro: <Text style={styles.textoNormal}>{fecha_retiro}</Text></Text>
             <Text style={styles.textoNegrita}>Fecha de traslado: <Text style={styles.textoNormal}>{fecha_traslado}</Text></Text>
             <Text style={styles.textoNegrita}>Importe: <Text style={styles.textoNormal}>${importe}</Text></Text>
