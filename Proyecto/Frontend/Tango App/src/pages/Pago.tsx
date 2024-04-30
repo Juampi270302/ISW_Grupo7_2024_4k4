@@ -19,11 +19,7 @@ import CustomAlertEnvio from '@/components/CustomAlertEnvio';
 import {DatosTransportistaCard} from '@/components/DatosTransportistaCard';
 
 export const Pago = () => {
-    const route = useRoute();
-    const datosPago = route.params?.tarjetaPago;
-    const datosTransportista = route.params?.datosTransportista;
-
-    const {transportista, setEstadoCotizacion} = useContext(TransportistasContext)
+    const {transportista, setEstadoCotizacion, pedido} = useContext(TransportistasContext)
 
     const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
     const [showButtonCC, setShowButtonCC] = useState(false);
@@ -33,13 +29,26 @@ export const Pago = () => {
     const [dialogCambioEst, setDialogCambioEst] = useState(false);
     const [dialogEnvio, setDialogEnvio] = useState(false);
     const [boton, setBoton] = useState("Confirmar cotizacion");
+    const [tarjetaAceptada, setTarjetaAceptada] = useState(false)
+
+    console.log(selectedFormaPagoLabel);
+    useEffect(() => {
+        if (selectedFormaPagoLabel === "Contado al retirar") {
+            setShowButtonCC(true)
+        }
+        if (selectedFormaPagoLabel === "Contado contra entrega"){
+            setShowButtonCC(true)
+        }
+        if (selectedFormaPagoLabel === "Tarjeta" && tarjetaAceptada) {
+            setShowButtonCC(true)
+        }
+    }, [selectedFormaPagoLabel, tarjetaAceptada]);
 
     const handleConfirmarCotizacion = async () => {
+
         if (cotizacionConfirmada) {
-            navigation.navigate("Cotizaciones")
-            // Si la cotización ya ha sido confirmada, mostrar un mensaje de alerta
-            //Alert.alert('Cotización ya confirmada', 'Usted ya ha aceptado una cotización');
-            return; // Salir de la función para evitar continuar con la confirmación
+            navigation.navigate("Pedidos")
+            return
         }
         let data: DatosEmail = {
 
@@ -54,10 +63,10 @@ export const Pago = () => {
                 console.log(result)
                 setTransportistas([transportista])
                 setEstadoCotizacion("Confirmada")
-
-                setDialogEnvio(true)
-                if (!dialogEnvio) {
-                    setDialogCambioEst(true)
+                pedido.estadoPedido = "Confirmado"
+                setDialogCambioEst(true)
+                if (!dialogCambioEst) {
+                    setDialogEnvio(true)
                 }
                 if (!dialogCambioEst) {
                     setBoton("Volver")
@@ -76,11 +85,11 @@ export const Pago = () => {
 
         switch (selectedOption) {
             case 'Tarjeta':
-                return <TarjetaCard/>;
+                return (!tarjetaAceptada && <TarjetaCard setAceptada={setTarjetaAceptada}/>);
             case 'Contado al retirar':
-                return <ContadoAlRetirarCard monto={datosPago.importe} fechaPago={datosPago.fecha_retiro}/>;
+                return <ContadoAlRetirarCard monto={transportista.importe} fechaPago={transportista.fecha_retiro}/>;
             case 'Contado contra entrega':
-                return <ContadoContraEntregaCard monto={datosPago.importe} fechaPago={datosPago.fecha_traslado}/>;
+                return <ContadoContraEntregaCard monto={transportista.importe} fechaPago={transportista.fecha_traslado}/>;
             default:
                 return null;
         }
@@ -88,7 +97,6 @@ export const Pago = () => {
 
     const handleFormaPagoChange = (selectedOption) => {
         setSelectedFormaPagoLabel(selectedOption.forma_pago);
-        setShowButtonCC(true)
         console.log(selectedOption.forma_pago)
     };
 
@@ -97,14 +105,16 @@ export const Pago = () => {
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
                 <DatosTransportistaCard
-                    nombre={datosTransportista.nombre}
-                    calificacion={datosTransportista.calificacion}
-                    fecha_retiro={datosTransportista.fecha_retiro}
-                    fecha_traslado={datosTransportista.fecha_traslado}
-                    importe={datosTransportista.importe}></DatosTransportistaCard>
+                    nombre={transportista.nombre}
+                    calificacion={transportista.calificacion}
+                    fecha_retiro={transportista.fecha_retiro}
+                    fecha_traslado={transportista.fecha_traslado}
+                    importe={transportista.importe}></DatosTransportistaCard>
 
-                {!cotizacionConfirmada && <PagoCard formasPago={datosPago.formasPago} onSelectFormaPago={handleFormaPagoChange}/>}
+                {!cotizacionConfirmada && !tarjetaAceptada && <PagoCard formasPago={transportista.forma_pago}
+                                                    onSelectFormaPago={handleFormaPagoChange}/>}
                 {selectedFormaPagoLabel && !cotizacionConfirmada && renderFormaPagoCard(selectedFormaPagoLabel)}
+                {tarjetaAceptada && !cotizacionConfirmada && <Text style={styles.tickText}>Pago procesado con exito, confirme cotizacion</Text>}
                 {cotizacionConfirmada && <Text style={styles.tickText}>Cotizacion confirmada!</Text>}
                 {showButtonCC &&
                     <ConfirmCotizacionButton title={boton} onPress={handleConfirmarCotizacion} style={{
@@ -118,8 +128,8 @@ export const Pago = () => {
                             fontSize: 16,
                         }
                     }}/>}
-                <CustomAlertEnvio visible={dialogEnvio} onClose={() => setDialogEnvio(false)}/>
-                {!dialogEnvio && <CustomAlertCambioEst visible={dialogCambioEst} onClose={() => setDialogCambioEst(false)}/>}
+                <CustomAlertCambioEst visible={dialogCambioEst} onClose={() => setDialogCambioEst(false)}/>
+                {!dialogCambioEst && <CustomAlertEnvio visible={dialogEnvio} onClose={() => setDialogEnvio(false)}/>}
             </ScrollView>
         </SafeAreaView>
     );

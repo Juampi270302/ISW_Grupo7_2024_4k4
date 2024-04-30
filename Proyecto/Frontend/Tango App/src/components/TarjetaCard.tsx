@@ -8,7 +8,11 @@ import {useNavigation} from "@react-navigation/native";
 import {procesarPago} from "@/utils/PasarlaPagos";
 import {DatosT, ProcesamientoPago} from "@/utils/Types";
 
-export const TarjetaCard = () => {
+interface TarjetaProps {
+    setAceptada: (valor:boolean) => void
+}
+
+export const TarjetaCard = ({setAceptada}: TarjetaProps) => {
     // Define los estados para almacenar los datos de la tarjeta y los mensajes de error
     const [numero, setNumero] = useState('');
     const [pin, setPin] = useState("");
@@ -209,23 +213,17 @@ export const TarjetaCard = () => {
         }
         let resultadoPago: ProcesamientoPago = procesarPago(pago)
         setDetallePago(resultadoPago)
-        resultadoPago.pagoExistoso
-            ? setPagoProcesado(true)
-            : setPagoProcesado(false)
+        if (resultadoPago.pagoExistoso){
+            setPagoProcesado(true)
+            setAceptada(true)
+        } else {
+            setPagoProcesado(false)
+        }
 
         console.log(resultadoPago)
         animateTick();
 
     };
-
-    const handleSubmit = () => {
-        // Realiza las validaciones finales antes de enviar los datos
-
-
-        // Aquí puedes enviar los datos
-        // Por ejemplo: enviarDatos(numero, pin, nombreCompleto, tipo, numeroDocumento);
-    };
-
 
     return (
         <View style={styles.container}>

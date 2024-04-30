@@ -43,4 +43,21 @@ type DatosEmail = {
     "formaPago": string
 }
 
-export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago, DatosEmail}
+type Pedido = {
+    tipoDeCarga: string,
+    calleRetiro: string,
+    numeroRetiro: string,
+    localidadRetiro: string,
+    provinciaRetiro: string,
+    referenciaRetiro: string,
+    fechaRetiro: string,
+    calleEntrega: string,
+    numeroEntrega: string,
+    localidadEntrega: string,
+    provinciaEntrega: string,
+    referenciaEntrega: string,
+    fechaEntrega: string,
+    estadoPedido: string
+}
+
+export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago, DatosEmail, Pedido}

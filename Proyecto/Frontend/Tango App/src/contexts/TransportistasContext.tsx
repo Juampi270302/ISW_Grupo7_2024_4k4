@@ -1,6 +1,7 @@
-import {Transportista} from "@/utils/Types";
-import {createContext, Dispatch, SetStateAction, useState} from "react";
+import {Pedido, Transportista} from "@/utils/Types";
+import {createContext, Dispatch, SetStateAction, useEffect, useState} from "react";
 import {transportistasMock} from "@/mocks/Transportista";
+import {pedido} from "@/mocks/Pedido";
 
 interface TransportistasContextInterface {
     transportistas: Transportista[];
@@ -8,7 +9,10 @@ interface TransportistasContextInterface {
     transportista: Transportista,
     setTransportista: Dispatch<SetStateAction<Transportista>>,
     estadoCotizacion: string,
-    setEstadoCotizacion: Dispatch<SetStateAction<string>>
+    setEstadoCotizacion: Dispatch<SetStateAction<string>>,
+    formaPagoSeleccionada: string,
+    setFormaPagoSeleccionada: Dispatch<SetStateAction<string>>,
+    pedido: Pedido
 }
 
 const defaultState = {
@@ -27,9 +31,11 @@ const defaultState = {
     },
     setTransportista: (transportista: Transportista) => {
     },
-    estadoCotizacion: "Disponible para confirmar",
-    setEstadoCotizacion: (estadoCotizacion:string) => {
-    }
+    estadoCotizacion: "Disponble para confirmar cotizacion",
+    setEstadoCotizacion: (estadoCotizacion:string) => {},
+    formaPagoSeleccionada: "",
+    setFormaPagoSeleccionada: (formaPagoSeleccionada:string) =>{},
+    pedido: pedido
 } as TransportistasContextInterface
 
 export const TransportistasContext = createContext(defaultState);
@@ -45,6 +51,9 @@ export const TransportistasContextProvider = ({children}: TransportistasProvider
         useState<Transportista>(defaultState.transportista)
     const [estadoCotizacion, setEstadoCotizacion] =
         useState<string>(defaultState.estadoCotizacion)
+    const [formaPagoSeleccionada, setFormaPagoSeleccionada] =
+        useState<string>(defaultState.formaPagoSeleccionada)
+
     return (
         <TransportistasContext.Provider value={{
             transportistas,
@@ -53,6 +62,9 @@ export const TransportistasContextProvider = ({children}: TransportistasProvider
             setTransportista,
             estadoCotizacion,
             setEstadoCotizacion,
+            formaPagoSeleccionada,
+            setFormaPagoSeleccionada,
+            pedido
         }}>
             {children}
         </TransportistasContext.Provider>

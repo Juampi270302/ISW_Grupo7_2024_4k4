@@ -1,6 +1,8 @@
 import React, { View, Text, StyleSheet } from 'react-native'
 import { Dropdown } from './Dropdown'
 import { FormaPago } from '@/utils/Types'
+import {useContext} from "react";
+import {TransportistasContext} from "@/contexts/TransportistasContext";
 
 interface PagoCardProps {
     formasPago: FormaPago[]; // Asegúrate de importar FormaPago de '@/utils/Types'
@@ -8,6 +10,7 @@ interface PagoCardProps {
 }
 
 export const PagoCard = ({ formasPago, onSelectFormaPago }: PagoCardProps) => {
+    const {setFormaPagoSeleccionada} = useContext(TransportistasContext)
     const placeholder = { label: 'Seleccione una forma de pago...', value: null };
 
     const options = formasPago.map(formaPago => ({
@@ -17,6 +20,7 @@ export const PagoCard = ({ formasPago, onSelectFormaPago }: PagoCardProps) => {
 
     const handleSelectFormaPago = (selectedOption) => {
         onSelectFormaPago(selectedOption.value);
+        setFormaPagoSeleccionada(selectedOption.value);
     };
 
 

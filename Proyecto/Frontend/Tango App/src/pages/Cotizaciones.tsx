@@ -7,7 +7,7 @@ import {useContext} from "react";
 import {TransportistasContext} from "@/contexts/TransportistasContext";
 
 
-export const Main = () => {
+export const Cotizaciones = () => {
     const {transportistas} = useContext(TransportistasContext)
     return (
         <SafeAreaView style={styles.MainContainer}>
