@@ -11,7 +11,7 @@ export const sendEmail = async (dataEmail: DatosEmail) => {
             },
             data:dataEmail
         })
-        return result
+        return result.data
     } catch (error){
         return error
     }

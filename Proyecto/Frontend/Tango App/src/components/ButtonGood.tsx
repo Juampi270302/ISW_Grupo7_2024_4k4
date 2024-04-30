@@ -9,11 +9,12 @@ interface ButtonGoodProps {
     title: string;
     onPress: () => void;
     style: ButtonStyle
+    disabled:boolean
   }
 
-  export const ButtonGood = ({ title, onPress, style }: ButtonGoodProps) => {
+  export const ButtonGood = ({ title, onPress, style, disabled }: ButtonGoodProps) => {
     return (
-      <Pressable style={[style.button, style.button]} onPress={onPress}>
+      <Pressable style={[style.button, style.button]} onPress={onPress} disabled={disabled}>
         <Text style={[style.buttonText, style.buttonText]}>{title}</Text>
       </Pressable>
     );

@@ -1,14 +1,19 @@
 import { PagoCard } from '@/components/PagoCard';
 import React, { ScrollView, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
-import { useState, useEffect } from 'react';
+
+import {useNavigation, useRoute} from '@react-navigation/native';
+import { ButtonGood } from '@/components/ButtonGood';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {useState, useEffect, useContext} from 'react';
 import { TarjetaCard } from '@/components/TarjetaCard';
 import { ContadoAlRetirarCard } from '@/components/ContadoAlRetirarCard';
 import { ContadoContraEntregaCard } from '@/components/ContadoContraEntregaCard'
 import { ConfirmCotizacionButton } from '@/components/ConfirmCotizacionButton';
-import { sendEmail } from "@/services/email.service";
-import { DatosEmail } from "@/utils/Types";
+
+import {sendEmail} from "@/services/email.service";
+import {DatosEmail, TarjetaPago} from "@/utils/Types";
+import {TransportistasContext} from "@/contexts/TransportistasContext";
 import CustomAlertDialog from '@/components/CustomAlertCambioEst';
 import CustomAlertEnvio from '@/components/CustomAlertEnvio';
 import { DatosTransportistaCard } from '@/components/DatosTransportistaCard';
@@ -17,8 +22,13 @@ export const Pago = () => {
   const route = useRoute();
   const datosPago = route.params?.tarjetaPago;
   const datosTransportista = route.params?.datosTransportista;
+
+  const {transportista, setEstadoCotizacion} = useContext(TransportistasContext)
+
   const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
   const [showButtonCC, setShowButtonCC] = useState(false);
+  const {setTransportistas} = useContext(TransportistasContext)
+  const navigation = useNavigation()
   const [cotizacionConfirmada, setCotizacionConfirmada] = useState(false);
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogEnvio, setDialogEnvio] = useState(false);
@@ -34,12 +44,21 @@ export const Pago = () => {
       return; // Salir de la función para evitar continuar con la confirmación
     }
     let data: DatosEmail = {
-      nombreDadorCarga: "Juan Pablo",
-      nombreTransportista: "Jose Transportista",
-      emailTransportista: "nvigliocco@gmail.com",
+
+      nombreDadorCarga: "Dador Carga",
+      nombreTransportista: transportista.nombre,
+      emailTransportista: transportista.email,
       formaPago: String(selectedFormaPagoLabel)
     }
-    await sendEmail(data).then(data => console.log(data)).catch((err) => console.log(err));
+
+    await sendEmail(data)
+        .then(result => {
+          console.log(result)
+          setTransportistas([transportista])
+          setEstadoCotizacion("Confirmada")
+          navigation.navigate("Cotizaciones")
+        })
+        .catch((err) => console.log(err));
 
     console.log('Se confirmo la cotizacion')
 
