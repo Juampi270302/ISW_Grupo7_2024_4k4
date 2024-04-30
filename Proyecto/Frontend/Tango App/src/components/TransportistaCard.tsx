@@ -31,13 +31,13 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
     return (
         <View style={styles.cardContainer}>
             <Text style={styles.title}>{nombre}</Text>
-            <Text>Calificación: {calificacion}</Text>
-            <Text>Fecha de retiro: {fecha_retiro}</Text>
-            <Text>Fecha de traslado: {fecha_traslado}</Text>
-            <Text>Importe: ${importe}</Text>
-            <Text>Formas de pago: </Text>
-            {forma_pago.map((pago, index) => (
-                <Text key={index}>{pago.forma_pago}</Text>
+            <Text style={styles.textoNegrita}>Calificación: <Text style={styles.textoNormal}>{calificacion}</Text></Text>
+            <Text style={styles.textoNegrita}>Fecha de retiro: <Text style={styles.textoNormal}>{fecha_retiro}</Text></Text>
+            <Text style={styles.textoNegrita}>Fecha de traslado: <Text style={styles.textoNormal}>{fecha_traslado}</Text></Text>
+            <Text style={styles.textoNegrita}>Importe: <Text style={styles.textoNormal}>${importe}</Text></Text>
+            <Text style={styles.textoNegrita}>Formas de pago: </Text>
+                {forma_pago.map((pago, index) => (
+            <Text key={index}>{"\u2022"} {pago.forma_pago}</Text>
             ))}
             <Text>Estado: {estadoCotizacion}</Text>
             <ButtonGood title={
@@ -46,7 +46,7 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
                     : "Ingresar para confirmar"
             } onPress={handleIngresarPress} style={{
                 button: {
-                    backgroundColor: '#214E34',
+                    backgroundColor: '#364156',
                     padding: 10,
                     borderRadius: 20,
                     alignItems: 'center',
@@ -63,16 +63,23 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
 const styles = StyleSheet.create({
     cardContainer: {
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: '#DFF8EB',
         borderRadius: 10,
         padding: 15,
         marginBottom: 15,
         backgroundColor: '#DFF8EB'
     },
     title: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         marginBottom: 5,
+        textAlign: 'center'
+    },
+    textoNegrita: {
+        fontWeight: 'bold',
+    },
+    textoNormal: {
+        fontWeight: 'normal',
     },
 
 }) 

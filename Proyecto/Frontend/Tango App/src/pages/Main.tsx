@@ -6,6 +6,7 @@ import {Transportista} from '@/utils/Types'
 import {useContext} from "react";
 import {TransportistasContext} from "@/contexts/TransportistasContext";
 
+
 export const Main = () => {
     const {transportistas} = useContext(TransportistasContext)
     return (

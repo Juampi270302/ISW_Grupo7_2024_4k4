@@ -31,7 +31,7 @@ export const PagoCard = ({ formasPago, onSelectFormaPago }: PagoCardProps) => {
 const styles = StyleSheet.create({
     cardContainer: {
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#DFF8EB',
         borderRadius: 10,
         padding: 10,
         marginBottom: 10,
