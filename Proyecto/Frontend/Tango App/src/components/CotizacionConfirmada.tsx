@@ -3,8 +3,8 @@ import {useContext, useState} from "react";
 import {TransportistasContext} from "@/contexts/TransportistasContext";
 
 
-export const PedidoConfirmado = () => {
-    const {transportista, formaPagoSeleccionada, estadoCotizacion} =
+export const CotizacionConfirmada = () => {
+    const {transportista, formaPagoSeleccionada} =
         useContext(TransportistasContext)
 
     return (
@@ -41,13 +41,7 @@ export const PedidoConfirmado = () => {
             <Text style={styles.textoNegrita}>
                 Forma de pago seleccionada:
                 <Text style={styles.textoNormal}>
-                    {formaPagoSeleccionada}
-                </Text>
-            </Text>
-            <Text style={styles.textoNegrita}>
-                Estado pedido de envio:
-                <Text style={styles.textoNormal}>
-                    {estadoCotizacion}
+                    {formaPagoSeleccionada.forma_pago}
                 </Text>
             </Text>
         </View>
