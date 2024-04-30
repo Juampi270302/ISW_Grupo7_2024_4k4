@@ -19,7 +19,7 @@ import CustomAlertEnvio from '@/components/CustomAlertEnvio';
 import {DatosTransportistaCard} from '@/components/DatosTransportistaCard';
 
 export const Pago = () => {
-    const {transportista, setEstadoCotizacion, pedido} = useContext(TransportistasContext)
+    const {transportista, setEstadoCotizacion} = useContext(TransportistasContext)
 
     const [selectedFormaPagoLabel, setSelectedFormaPagoLabel] = useState(null); // Almacena la etiqueta de la forma de pago seleccionada
     const [showButtonCC, setShowButtonCC] = useState(false);
@@ -62,8 +62,7 @@ export const Pago = () => {
             .then(result => {
                 console.log(result)
                 setTransportistas([transportista])
-                setEstadoCotizacion("Confirmada")
-                pedido.estadoPedido = "Confirmado"
+                setEstadoCotizacion("Confirmado")
                 setDialogCambioEst(true)
                 if (!dialogCambioEst) {
                     setDialogEnvio(true)

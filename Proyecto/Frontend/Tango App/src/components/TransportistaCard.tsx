@@ -37,7 +37,6 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
             {forma_pago.map((pago, index) => (
                     <Text key={index}>{"\u2022"} {pago.forma_pago}</Text>
             ))}
-            <Text>Estado: {estadoCotizacion}</Text>
             {
                 (estadoCotizacion !== "Confirmada") &&
                 <ButtonGood title={"Ingresar para confirmar"} onPress={handleIngresarPress} style={{

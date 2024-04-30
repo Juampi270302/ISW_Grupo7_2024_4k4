@@ -69,7 +69,7 @@ export const PedidoCard = () => {
                 </Text>
             </Text>
             <Text style={styles.textoNormal}>
-                Estado pedido: {pedido.estadoPedido}
+                Estado pedido: {estadoCotizacion}
             </Text>
             <ButtonGood title={"Ver cotizaciones disponibles"} onPress={handlePressPedido} style={{
                 button: {
