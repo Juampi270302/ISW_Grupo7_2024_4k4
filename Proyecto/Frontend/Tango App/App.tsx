@@ -1,4 +1,3 @@
-import {Dropdown} from '@/components/Dropdown'
 import {Main} from '@/pages/Main'
 import {Pago} from '@/pages/Pago'
 import {NavigationContainer} from '@react-navigation/native'

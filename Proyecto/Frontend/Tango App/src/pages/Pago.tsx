@@ -50,15 +50,14 @@ export const Pago = () => {
       emailTransportista: transportista.email,
       formaPago: String(selectedFormaPagoLabel)
     }
-
     await sendEmail(data)
-        .then(result => {
-          console.log(result)
-          setTransportistas([transportista])
-          setEstadoCotizacion("Confirmada")
-          navigation.navigate("Cotizaciones")
-        })
-        .catch((err) => console.log(err));
+    .then(result => {
+      console.log(result)
+      setTransportistas([transportista])
+      setEstadoCotizacion("Confirmada")
+      navigation.navigate("Cotizaciones")
+    })
+    .catch((err) => console.log(err));
 
     console.log('Se confirmo la cotizacion')
 

@@ -9,7 +9,7 @@ export const DatosTransportistaCard = ({nombre, calificacion, fecha_retiro, fech
             <Text style={styles.textoNegrita}>Fecha de retiro: <Text style={styles.textoNormal}>{fecha_retiro}</Text></Text>
             <Text style={styles.textoNegrita}>Fecha de traslado: <Text style={styles.textoNormal}>{fecha_traslado}</Text></Text>
             <Text style={styles.textoNegrita}>Importe: <Text style={styles.textoNormal}>${importe}</Text></Text>
-            <Image source={require("C:/Users/nvigl/OneDrive/Desktop/4to 2024/Ing Cal SW/Repositorio/ISW_Grupo7_2024_4k4/Proyecto/Frontend/Tango App/src/utils/app-icon-person.png")} style={styles.icon} />
+            <Image source={require('../assets/app-icon-person.png')} style={styles.icon} />
         </View>
     )
 }
