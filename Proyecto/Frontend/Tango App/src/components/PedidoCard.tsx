@@ -71,7 +71,11 @@ export const PedidoCard = () => {
             <Text style={styles.textoNormal}>
                 Estado pedido: {estadoCotizacion}
             </Text>
-            <ButtonGood title={"Ver cotizaciones disponibles"} onPress={handlePressPedido} style={{
+            <ButtonGood title={
+                estadoCotizacion !== "Confirmado"
+                    ? "Ver cotizaciones disponibles"
+                    : "Ver cotizacion confirmada"
+            } onPress={handlePressPedido} style={{
                 button: {
                     backgroundColor: '#364156',
                     padding: 10,
