@@ -22,24 +22,26 @@ export const CotizacionConfirmada = () => {
                 </Text>
             </Text>
             <Text style={styles.textoNegrita}>
-                <Text style={styles.textoNormal}>
-                    Fecha de retiro: {transportista.fecha_retiro}
+                <Text style={styles.textoNegrita}>
+                    Fecha de retiro: <Text style={styles.textoNormal}>
+                    {transportista.fecha_retiro}
+                </Text>
                 </Text>
             </Text>
             <Text style={styles.textoNegrita}>
-                Fecha de retiro:
+                Fecha de traslado:
                 <Text style={styles.textoNormal}>
                     {transportista.fecha_traslado}
                 </Text>
             </Text>
             <Text style={styles.textoNegrita}>
-                Importe:
+                Importe: $ 
                 <Text style={styles.textoNormal}>
                     {transportista.importe}
                 </Text>
             </Text>
             <Text style={styles.textoNegrita}>
-                Forma de pago seleccionada:
+                Forma de pago seleccionada: 
                 <Text style={styles.textoNormal}>
                     {formaPagoSeleccionada.forma_pago}
                 </Text>

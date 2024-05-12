@@ -47,7 +47,7 @@ export const procesarPago = (datosT: DatosT) => {
             return resultadoProceso
         }
     }
-    if (mesVencimiento <= mesActual || anioVencimiento <= anioActual) {
+    if (mesVencimiento <= mesActual || anioVencimiento < anioActual) {
         let resultadoProceso: ProcesamientoPago = {
             pagoExistoso: false,
             descripcion: "Tarjeta no vigente",

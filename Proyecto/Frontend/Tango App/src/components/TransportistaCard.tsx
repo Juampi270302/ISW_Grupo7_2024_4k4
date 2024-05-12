@@ -45,7 +45,8 @@ export const TransportistaCard = (props: TransportistaCardProps) => {
                         padding: 10,
                         borderRadius: 20,
                         alignItems: 'center',
-                        marginBottom: 20
+                        marginBottom: 12,
+                        marginTop: 14
                     }, buttonText: {
                         color: 'white',
                         fontSize: 16,

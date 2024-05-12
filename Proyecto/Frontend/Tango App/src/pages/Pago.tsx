@@ -76,7 +76,7 @@ export const Pago = () => {
             })
             .catch((err) => console.log(err));
 
-        console.log('Se confirmo la cotizacion')
+        console.log("Se confirmo la cotizacion")
     }
 
 
