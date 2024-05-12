@@ -3,17 +3,16 @@ import {DatosEmail} from "@/utils/Types";
 import axios from "axios";
 
 export const sendEmail = async (dataEmail: DatosEmail) => {
-    try {
-        const result = await httpService("/sendEmail", {
+    try{
+        const result = await httpService("/sendEmail",{
             method: "POST",
-            headers: {
+            headers:{
                 "Content-Type":"application/json"
             },
             data:dataEmail
         })
         return result.data
-    }
-    catch (error) {
+    } catch (error){
         return error
     }
-};
+}

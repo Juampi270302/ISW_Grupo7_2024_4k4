@@ -1,31 +1,35 @@
-import React, {useState, useEffect} from "react";
-import {ScrollView, StyleSheet, Animated, Easing, Text, View, TextInput, Alert} from "react-native";
-import {ButtonGood} from "@/components/ButtonGood";
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, Animated, Easing, Text, View, TextInput, Alert} from 'react-native';
+import {ButtonGood} from '@/components/ButtonGood';
 import {RadioButton} from "react-native-paper";
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from "@react-navigation/native";
 import {procesarPago} from "@/utils/PasarlaPagos";
 import {DatosT, ProcesamientoPago} from "@/utils/Types";
 
-export const TarjetaCard = () => {
+interface TarjetaProps {
+    setAceptada: (valor:boolean) => void
+}
+
+export const TarjetaCard = ({setAceptada}: TarjetaProps) => {
     // Define los estados para almacenar los datos de la tarjeta y los mensajes de error
-    const [numero, setNumero] = useState("");
+    const [numero, setNumero] = useState('');
     const [pin, setPin] = useState("");
-    const [fechaVencimiento, setFechaVencimiento] = useState("");
-    const [nombreCompleto, setNombreCompleto] = useState("");
-    const [tipo, setTipo] = useState("");
+    const [fechaVencimiento, setFechaVencimiento] = useState('');
+    const [nombreCompleto, setNombreCompleto] = useState('');
+    const [tipo, setTipo] = useState('');
     const [tipoPago, setTipoPago] = useState("")
     const [tipoDoc, setTipoDoc] = useState("")
-    const [numeroDocumento, setNumeroDocumento] = useState("");
+    const [numeroDocumento, setNumeroDocumento] = useState('');
     const [errors, setErrors] = useState({
         tipoTarjeta: "",
-        numero: "",
-        noVisaMaster: "",
-        pin: "",
+        numero: '',
+        noVisaMaster: '',
+        pin: '',
         fechaVencimiento: "",
         tipoDoc: "",
-        numeroDocumento: "",
+        numeroDocumento: ''
     });
     const [tickAnimation] = useState(new Animated.Value(0));
     const [pagoProcesado, setPagoProcesado] = useState(false)
@@ -72,7 +76,7 @@ export const TarjetaCard = () => {
         if (!/^(4|[5][1-5])\d*/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                noVisaMaster: "El numero de tarjeta debe comenzar con 4 - Visa o 51-55 - Mastercard"
+                noVisaMaster: 'El numero de tarjeta debe comenzar con 4 - Visa o 51-55 - Mastercard'
             }))
         } else {
             setErrors((prevErrors) => ({
@@ -83,18 +87,18 @@ export const TarjetaCard = () => {
         if (!/^\d{15,19}$/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                numero: "El número de tarjeta debe tener entre 15 y 19 dígitos."
+                numero: 'El número de tarjeta debe tener entre 15 y 19 dígitos.'
             }));
         } else {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                numero: ""
+                numero: ''
             }));
         }
         if (tipo === "") {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                tipoTarjeta: "Debe seleccionar un tipo de tarjeta"
+                tipoTarjeta: 'Debe seleccionar un tipo de tarjeta'
             }))
         }
     };
@@ -104,7 +108,7 @@ export const TarjetaCard = () => {
         if (!/^\d{3}$/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                pin: "El PIN debe tener 3 dígitos."
+                pin: 'El PIN debe tener 3 dígitos.'
             }));
         } else {
             setErrors((prevErrors) => ({
@@ -135,26 +139,26 @@ export const TarjetaCard = () => {
         if (tipoDoc === "DNI" && !/^\d{8}$/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                numeroDocumento: "El número de documento debe tener 8 dígitos."
+                numeroDocumento: 'El número de documento debe tener 8 dígitos.'
             }));
         } else if (tipoDoc === "Pasaporte" && !/^[A-Z]{3}\d{6}$/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                numeroDocumento: "El pasaporte debe tener 3 letras mayusuculas y 6 digitos"
+                numeroDocumento: 'El pasaporte debe tener 3 letras mayusuculas y 6 digitos'
             }));
         } else if (tipoDoc === "CUIT" && !/^\d{11}$/.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                numeroDocumento: "El CUIT debe tener 11 digitos, todos juntos"
+                numeroDocumento: 'El CUIT debe tener 11 digitos, todos juntos'
             }));
         } else setErrors((prevErrors) => ({
             ...prevErrors,
-            numeroDocumento: ""
+            numeroDocumento: ''
         }))
         if (tipoDoc === "") {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                tipoDoc: "Debe seleccionar un tipo de documento"
+                tipoDoc: 'Debe seleccionar un tipo de documento'
             }))
         }
 
@@ -164,7 +168,7 @@ export const TarjetaCard = () => {
         setTipo(value)
         setErrors((prevErrors) => ({
             ...prevErrors,
-            tipoTarjeta: ""
+            tipoTarjeta: ''
         }))
     }
 
@@ -174,7 +178,7 @@ export const TarjetaCard = () => {
         setNumeroDocumento("")
         setErrors((prevErrors) => ({
             ...prevErrors,
-            tipoDoc: ""
+            tipoDoc: ''
         }))
 
     }
@@ -195,7 +199,7 @@ export const TarjetaCard = () => {
             !numeroDocumento ||
             !tipoPago
         ) {
-            Alert.alert("Error", "Por favor, corrija los campos con errores o incompletos para continuar.");
+            Alert.alert('Error', 'Por favor, corrija los campos con errores o incompletos para continuar.');
             return;
         }
         const pago: DatosT = {
@@ -209,23 +213,17 @@ export const TarjetaCard = () => {
         }
         let resultadoPago: ProcesamientoPago = procesarPago(pago)
         setDetallePago(resultadoPago)
-        resultadoPago.pagoExistoso
-            ? setPagoProcesado(true)
-            : setPagoProcesado(false)
+        if (resultadoPago.pagoExistoso){
+            setPagoProcesado(true)
+            setAceptada(true)
+        } else {
+            setPagoProcesado(false)
+        }
 
         console.log(resultadoPago)
         animateTick();
 
     };
-
-    const handleSubmit = () => {
-        // Realiza las validaciones finales antes de enviar los datos
-
-
-        // Aquí puedes enviar los datos
-        // Por ejemplo: enviarDatos(numero, pin, nombreCompleto, tipo, numeroDocumento);
-    };
-
 
     return (
         <View style={styles.container}>
@@ -234,19 +232,19 @@ export const TarjetaCard = () => {
             </View>
             <View style={{marginBottom: 10}}>
                 <Text>Seleccione el tipo de tarjeta</Text>
-                <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <RadioButton
                         value="Debito"
-                        status={tipo === "Debito" ? "checked" : "unchecked"}
-                        onPress={() => handleTipoTarjeta("Debito")}
+                        status={tipo === 'Debito' ? 'checked' : 'unchecked'}
+                        onPress={() => handleTipoTarjeta('Debito')}
                     />
                     <Text>Debito</Text>
                 </View>
-                <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <RadioButton
                         value="Credito"
-                        status={tipo === "Credito" ? "checked" : "unchecked"}
-                        onPress={() => handleTipoTarjeta("Credito")}
+                        status={tipo === 'Credito' ? 'checked' : 'unchecked'}
+                        onPress={() => handleTipoTarjeta('Credito')}
                     />
                     <Text>Credito</Text>
                 </View>
@@ -285,26 +283,26 @@ export const TarjetaCard = () => {
             />
             <View style={{marginBottom: 10}}>
                 <Text>Seleccione el tipo de documento</Text>
-                <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <RadioButton
                         value="DNI"
-                        status={tipoDoc === "DNI" ? "checked" : "unchecked"}
+                        status={tipoDoc === 'DNI' ? 'checked' : 'unchecked'}
                         onPress={() => handleTipoDoc("DNI")}
                     />
                     <Text>DNI</Text>
                 </View>
-                <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <RadioButton
                         value="Pasaporte"
-                        status={tipoDoc === "Pasaporte" ? "checked" : "unchecked"}
+                        status={tipoDoc === "Pasaporte" ? 'checked' : 'unchecked'}
                         onPress={() => handleTipoDoc("Pasaporte")}
                     />
                     <Text>Pasaporte</Text>
                 </View>
-                <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <RadioButton
                         value="CUIT"
-                        status={tipoDoc === "CUIT" ? "checked" : "unchecked"}
+                        status={tipoDoc === 'CUIT' ? 'checked' : 'unchecked'}
                         onPress={() => handleTipoDoc("CUIT")}
                     />
                     <Text>CUIT</Text>
@@ -320,14 +318,14 @@ export const TarjetaCard = () => {
             />
             {errors.numeroDocumento ? <Text style={styles.error}>{errors.numeroDocumento}</Text> : null}
             <View style={styles.buttonContainer}>
-                <ButtonGood title="Pagar" onPress={handlePagar} style={{
+                <ButtonGood title='Pagar' onPress={handlePagar} style={{
                     button: {
-                        backgroundColor: "#364156",
+                        backgroundColor: '#364156',
                         padding: 10,
                         borderRadius: 20,
-                        alignItems: "center",
+                        alignItems: 'center',
                     }, buttonText: {
-                        color: "white",
+                        color: 'white',
                         fontSize: 16,
                     }
                 }} disabled={pagoProcesado}/>
@@ -356,7 +354,7 @@ export const TarjetaCard = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#DFF8EB",
+        backgroundColor: '#DFF8EB',
         borderRadius: 10,
         padding: 20,
         marginBottom: 20,
@@ -366,38 +364,38 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        borderColor: "gray",
+        borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 5,
         marginBottom: 10,
         paddingHorizontal: 10,
-        backgroundColor: "white"
+        backgroundColor: 'white'
     },
     error: {
-        color: "red",
+        color: 'red',
         marginBottom: 5,
     },
     tickWrapper: {
-        position: "absolute",
-        top: "55%",
-        left: "55%",
+        position: 'absolute',
+        top: '55%',
+        left: '55%',
         transform: [{translateX: -75}, {translateY: -75}],
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
         zIndex: 1, // Para asegurarse de que esté por encima de otros elementos
     },
     tickContainer: {
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderRadius: 10,
         padding: 20,
     },
     tickContent: {
-        alignItems: "center",
+        alignItems: 'center',
     },
     tickText: {
         marginTop: 10,
         fontSize: 16,
-        color: "black",
-        textAlign: "center",
+        color: 'black',
+        textAlign: 'center',
     },
 });

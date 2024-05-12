@@ -10,9 +10,9 @@ type Transportista = {
 }
 
 type TarjetaPago = {
-    formasPago: FormaPago[],
-    importe: number,
-    fecha_retiro: string,
+    formasPago: FormaPago[]
+    importe: number
+    fecha_retiro: string
     fecha_traslado: string
 }
 
@@ -21,18 +21,18 @@ type FormaPago = {
 }
 
 type DatosT = {
-    tipoTarjeta: string,
-    numeroTarjeta: string,
-    fechaVencimiento: string,
-    pin: string,
-    nombreCompleto: string,
-    tipoDocumento: string,
+    tipoTarjeta: string
+    numeroTarjeta: string
+    fechaVencimiento: string
+    pin: string
+    nombreCompleto: string
+    tipoDocumento: string
     nroDocumento: string
 }
 
 type ProcesamientoPago = {
-    pagoExistoso: boolean,
-    descripcion: string,
+    pagoExistoso: boolean
+    descripcion: string
     codigoPago: number
 }
 
@@ -43,4 +43,21 @@ type DatosEmail = {
     "formaPago": string
 }
 
-export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago, DatosEmail}
+type Pedido = {
+    tipoDeCarga: string,
+    calleRetiro: string,
+    numeroRetiro: string,
+    localidadRetiro: string,
+    provinciaRetiro: string,
+    referenciaRetiro: string,
+    fechaRetiro: string,
+    calleEntrega: string,
+    numeroEntrega: string,
+    localidadEntrega: string,
+    provinciaEntrega: string,
+    referenciaEntrega: string,
+    fechaEntrega: string,
+    estadoPedido: string
+}
+
+export {Transportista, FormaPago, DatosT, ProcesamientoPago, TarjetaPago, DatosEmail, Pedido}

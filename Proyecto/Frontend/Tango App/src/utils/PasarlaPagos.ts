@@ -20,7 +20,7 @@ let tarjetasNoValidas: DatosT[] = [
         tipoDocumento:"DNI",
         nroDocumento: "12345678"
     }
-];
+]
 
 export const procesarPago = (datosT: DatosT) => {
     const fechaActual: Date = new Date()
@@ -47,7 +47,7 @@ export const procesarPago = (datosT: DatosT) => {
             return resultadoProceso
         }
     }
-    if (mesVencimiento <= mesActual || anioVencimiento <= anioActual) {
+    if (mesVencimiento <= mesActual || anioVencimiento < anioActual) {
         let resultadoProceso: ProcesamientoPago = {
             pagoExistoso: false,
             descripcion: "Tarjeta no vigente",
@@ -62,4 +62,4 @@ export const procesarPago = (datosT: DatosT) => {
         codigoPago: rnd
     }
     return resultadoProceso
-};
+}
