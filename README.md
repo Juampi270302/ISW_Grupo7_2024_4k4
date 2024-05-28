@@ -28,8 +28,7 @@ Repositorio
 	- TestingDeSoftware
 - ClasesGrabadas
 - PlanificacionDeLaMateria
-- Proyecto
-	- Frontend
+- Proyecto/Frontend
 - TrabajosPracticos
 	- Guías
 	- PracticosEvaluablesResueltos
@@ -57,8 +56,9 @@ Los Items con prefijo DIR, es decir directorios, no llevan extension de archivo
 
 <h3>Criterio de Linea Base</h3>
 
-Para establecer el criterio de linea base, tenemos en cuenta principalmente la entrega de los trabajos prácticos evaluables del cuatrimestre. 
-Estableceremos una nueva linea base con cada evento de agregación de un trabajo práctico evaluable finalizado o entregado al repositorio.
+Para establecer el criterio de linea base, tenemos en cuenta principalmente la entrega de los trabajos prácticos evaluables del cuatrimestre (tanto en la parte teórica como práctica de la materia). 
+Estableceremos una nueva linea base con cada evento de agregado de un trabajo práctico evaluable o trabajo práctico conceptual finalizado o entregado al repositorio.
+Es decir que, cuando se agregue un nuevo trabajo práctico de carácter evaluable al repositorio, se establece una nueva línea base. 
 
 
 <h3>Glosario</h3>
